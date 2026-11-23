@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panduan Penggunaan NutriKalk v3.1</title>
+<style>
+:root{--g:#0f766e;--g2:#14b8a6;--lime:#84cc16;--bg:#f0fdfa;--c:#fff;--t:#0f172a;--m:#64748b;--l:#e2e8f0;--o:#f97316;--ob:#fff7ed;--r:18px;--red:#dc2626;--sh:0 6px 24px #0f172a14}
+@media(prefers-color-scheme:dark){:root{--bg:#06201d;--c:#0d2f2b;--t:#e6fffb;--m:#9fc5c0;--l:#1d4a44;--ob:#3a2412;--sh:0 6px 24px #0008}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);line-height:1.65}
+#pg{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--o),var(--lime));z-index:99}
+header{background:linear-gradient(135deg,#0f766e,#14b8a6 60%,#84cc16);color:#fff;text-align:center;padding:44px 18px 56px;position:relative;overflow:hidden}
+header:before,header:after{content:"";position:absolute;border-radius:50%;background:#ffffff1c}
+header:before{width:260px;height:260px;left:-70px;top:-90px}header:after{width:200px;height:200px;right:-50px;bottom:-80px}
+header .em{font-size:56px;display:block;animation:fl 3s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-8px)}}
+header h1{margin:6px 0 4px;font-size:clamp(26px,5vw,40px)}header p{margin:0 auto;max-width:600px;opacity:.95}
+.pill{display:inline-block;background:#fff3;border:1px solid #fff6;padding:4px 14px;border-radius:99px;font-size:13px;margin-top:14px}
+nav{position:sticky;top:0;z-index:50;background:var(--c);box-shadow:0 2px 12px #0f172a18;overflow-x:auto;white-space:nowrap;padding:8px 10px;text-align:center;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+nav a{display:inline-block;margin:2px 3px;padding:6px 13px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--g);text-decoration:none;transition:.2s}
+nav a:hover,nav a.on{background:var(--g);color:#fff}
+main{max-width:960px;margin:22px auto 50px;padding:0 14px;position:relative}
+section{background:var(--c);border-radius:var(--r);box-shadow:var(--sh);padding:24px;margin-bottom:20px}
+section>h2{margin:0 0 6px;font-size:22px;color:var(--g);display:flex;align-items:center;gap:10px}
+section>h2 .n{background:var(--g);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none}
+.sub{color:var(--m);margin:0 0 14px}
+h3{color:var(--g);margin:20px 0 6px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0}
+.box{background:var(--bg);border-radius:14px;padding:14px;border:1.5px solid var(--l)}
+.box b{color:var(--g)}.box .ic{font-size:28px;display:block;margin-bottom:4px}
+.tip,.warn,.info{border-left:5px solid var(--o);background:var(--ob);padding:11px 14px;border-radius:10px;margin:12px 0;font-size:14.5px}
+.warn{border-color:var(--red)}.info{border-color:var(--g2);background:var(--bg)}
+.tip:before{content:"💡 ";}.warn:before{content:"⚠️ ";}.info:before{content:"ℹ️ ";}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
+th,td{padding:8px 10px;border-bottom:1px solid var(--l);text-align:left;vertical-align:top}
+th{background:var(--bg);color:var(--g);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+.sc{overflow-x:auto}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;color:#fff;font-size:12.5px;font-weight:700}
+code,.f{background:var(--bg);border:1px solid var(--l);padding:2px 7px;border-radius:7px;font-size:13.5px}
+.f{display:block;margin:8px 0;padding:10px 14px;font-family:ui-monospace,Menlo,monospace;overflow-x:auto}
+ol.st{list-style:none;padding:0;counter-reset:s}
+ol.st li{counter-increment:s;position:relative;padding:8px 0 8px 46px}
+ol.st li:before{content:counter(s);position:absolute;left:0;top:6px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--o),#fb923c);color:#fff;font-weight:800;display:grid;place-items:center}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:14px 0}
+.flow span{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:9px 14px;border-radius:12px;font-weight:700;font-size:14px}
+.flow i{color:var(--o);font-style:normal;font-weight:900;font-size:20px}
+.bar{display:flex;height:28px;border-radius:99px;overflow:hidden;color:#fff;font-weight:700;font-size:12.5px;margin:10px 0}
+.bar div{display:grid;place-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chips button{padding:9px 15px;border:1.5px solid var(--l);background:var(--c);color:var(--t);border-radius:99px;cursor:pointer;font-size:14px;font-weight:600}
+.chips button.on{background:var(--o);border-color:var(--o);color:#fff}
+.tabp{display:none;animation:in .3s}.tabp.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+details{border:1.5px solid var(--l);border-radius:12px;padding:2px 14px;margin:8px 0;background:var(--c)}
+summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--g)}
+details[open]{border-color:var(--g2)}
+.cta{text-align:center;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-radius:var(--r);padding:26px;margin-bottom:20px}
+.cta h2{margin:0 0 6px;color:#fff;display:block}
+.disc{font-size:12.5px;color:var(--m);text-align:center}
+ul{padding-left:20px}li{margin:4px 0}
+.btn{background:var(--o);color:#fff;border:0;padding:10px 20px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px}
+@media print{header,nav,#pg,.cta .btn{display:none}main{margin:0}section{box-shadow:none;break-inside:avoid}}
+</style></head><body>
+<div id="pg"></div>
+<header>
+<span class="em">🥗</span>
+<h1>Panduan Penggunaan NutriKalk</h1>
+<p>Kalkulator kebutuhan gizi &amp; konversi ke makanan untuk Dokter Gizi &amp; Dokter Keluarga</p>
+<span class="pill">Versi 3.1 · berbahasa Indonesia · tanpa instalasi</span>
+</header>
+<nav id="nav">
+<a href="#mulai">Mulai Cepat</a><a href="#l1">1 Data Pasien</a><a href="#l2">2 BMR &amp; Aktivitas</a><a href="#l3">3 Kondisi Klinis</a><a href="#l4">4 Porsi</a><a href="#l5">5 Makanan</a><a href="#output">Cetak &amp; WA</a><a href="#faq">FAQ</a>
+</nav>
+<main>
+
+<section id="mulai">
+<h2>🚀 Mulai Cepat</h2>
+<p class="sub">NutriKalk menghitung kebutuhan energi dan makronutrien pasien dewasa, lalu mengubahnya menjadi takaran makanan nyata (centong, potong, butir, sdt) per waktu makan.</p>
+<div class="flow"><span>Data pasien</span><i>→</i><span>Energi (TEE)</span><i>→</i><span>Kondisi klinis</span><i>→</i><span>Porsi</span><i>→</i><span>Menu</span></div>
+<div class="grid">
+<div class="box"><span class="ic">📂</span><b>Buka</b><br>Buka file <code>NutriKalk_v3_1.html</code> di browser (HP atau komputer). Tidak perlu internet untuk menghitung.</div>
+<div class="box"><span class="ic">⚡</span><b>Hasil real-time</b><br>Setiap angka yang diubah langsung memperbarui seluruh hasil. Tidak ada tombol “Hitung”.</div>
+<div class="box"><span class="ic">🔒</span><b>Privasi</b><br>Data pasien tidak disimpan oleh aplikasi. Menutup halaman akan menghapus semuanya.</div>
+</div>
+<div class="tip">Aplikasi sudah terisi contoh pasien (pria, 38 th, 66,7 kg, 166 cm). Ubah saja angkanya agar langsung melihat cara kerjanya.</div>
+</section>
+
+<section id="l1">
+<h2><span class="n">1</span>Data Pasien &amp; Status Gizi</h2>
+<p class="sub">Isi identitas dan antropometri. IMT dan status gizi muncul otomatis.</p>
+<div class="sc"><table>
+<tr><th>Kolom</th><th>Cara isi</th><th>Batas valid</th></tr>
+<tr><td>Nama pasien</td><td>Opsional; hanya dipakai pada rekap WhatsApp</td><td>–</td></tr>
+<tr><td>Jenis kelamin</td><td>Tombol 👨 Pria / 👩 Wanita (memengaruhi BMR, eGFR, batas Hb)</td><td>–</td></tr>
+<tr><td>Usia</td><td>Tahun</td><td>18–110 (khusus dewasa)</td></tr>
+<tr><td>Berat badan</td><td>kg, boleh desimal</td><td>20–300</td></tr>
+<tr><td>Tinggi badan</td><td>cm</td><td>100–230</td></tr>
+</table></div>
+<h3>Klasifikasi IMT (WHO Asia Pasifik)</h3>
+<div class="chips" style="gap:6px">
+<span class="badge" style="background:#3b82f6">&lt; 18,5 Underweight</span>
+<span class="badge" style="background:#16a34a">18,5–22,9 Normal</span>
+<span class="badge" style="background:#f59e0b">23–24,9 Overweight</span>
+<span class="badge" style="background:#ea580c">25–29,9 Obesitas I</span>
+<span class="badge" style="background:#dc2626">≥ 30 Obesitas II</span>
+</div>
+<p>Selain IMT, ditampilkan juga <b>BB maksimal normal</b> (berat pada IMT 22,9) sebagai patokan target berat badan.</p>
+<div class="warn">Jika ada nilai di luar batas, kotak merah muncul dan seluruh perhitungan <b>dihentikan</b> sampai input diperbaiki. Ini fitur keamanan, bukan error.</div>
+</section>
+
+<section id="l2">
+<h2><span class="n">2</span>BMR, RMR &amp; Aktivitas Harian (TEE)</h2>
+<p class="sub">Menentukan total kebutuhan energi per hari.</p>
+<h3>Pilih metode BMR/REE</h3>
+<div class="sc"><table>
+<tr><th>Metode</th><th>Keterangan</th></tr>
+<tr><td>⭐ Mifflin-St Jeor (1990)</td><td><b>Disarankan.</b> Pria: 10×BB + 6,25×TB − 5×usia + 5; wanita: … − 161</td></tr>
+<tr><td>Harris-Benedict (1919)</td><td>Koefisien klasik; cenderung lebih tinggi dari pengukuran modern. RMR Harris-Benedict selalu ditampilkan sebagai pembanding.</td></tr>
+<tr><td>Tabel faktor kkal/kg</td><td>BMR = BB × faktor (interpolasi menurut usia &amp; BB). Sumber tabel belum tercantum, pakai sebagai pembanding. Faktor manual boleh diisi (15–40 kkal/kg/hari); kosong = otomatis.</td></tr>
+</table></div>
+<h3>Isi durasi kegiatan sehari (jam)</h3>
+<div class="info">Prinsipnya: <b>ceritakan 24 jam kemarin</b> dari bangun tidur sampai tidur lagi, lalu masukkan tiap jam ke <b>satu kategori saja</b>. Jam yang tidak terisi otomatis menjadi “⏳ Lainnya” (×1,4), jadi tidak perlu dipaksa genap 24.</div>
+<div class="sc"><table>
+<tr><th>Kategori (pengali)</th><th>Dihitung sebagai…</th><th>Contoh</th><th>Jangan dicampur dengan</th></tr>
+<tr><td>😴 Tidur ×1</td><td>Waktu benar-benar tidur</td><td>Tidur malam, tidur siang</td><td>Berbaring sambil main HP → <b>Duduk</b></td></tr>
+<tr><td>🚿 Kegiatan dasar ×1,4</td><td>Perawatan diri harian</td><td>Mandi, berpakaian, makan, ibadah, mengobrol santai</td><td>Memasak/mencuci → <b>Tugas rumah tangga</b></td></tr>
+<tr><td>🪑 Duduk ×1,4</td><td>Duduk <b>di luar pekerjaan</b></td><td>Nonton TV, main HP, duduk di kendaraan, menyetir, bersantai</td><td>Duduk di meja kerja → <b>Bekerja ringan</b></td></tr>
+<tr><td>🧍 Berdiri ×1,5</td><td>Berdiri tanpa banyak berpindah</td><td>Antre, berdiri di bus/KRL, ngobrol sambil berdiri</td><td>Berdiri sambil bekerja → kategori <b>Bekerja</b></td></tr>
+<tr><td>💼 Bekerja ringan ×1,7</td><td>Pekerjaan dominan duduk/sedikit gerak</td><td>Pegawai kantor, programmer, dokter praktik di meja, kasir duduk, sopir</td><td>Jam kerja jangan diisi lagi di Duduk/Berdiri</td></tr>
+<tr><td>🔨 Bekerja sedang ×2,2</td><td>Pekerjaan banyak berdiri/berjalan dengan beban ringan–sedang</td><td>Perawat, guru, pedagang pasar, teknisi, pelayan restoran</td><td>Jangan campur dengan Berjalan untuk jam yang sama</td></tr>
+<tr><td>🏗️ Bekerja berat ×2,8</td><td>Pekerjaan fisik berat</td><td>Kuli bangunan, petani mencangkul, buruh angkut, tukang las</td><td>Isi hanya bila benar-benar angkat/dorong beban</td></tr>
+<tr><td>🧹 Tugas rumah tangga ×2,5</td><td>Pekerjaan rumah aktif</td><td>Menyapu, mengepel, mencuci, menyetrika, memasak, mengasuh anak aktif</td><td>Makan &amp; duduk santai bukan tugas rumah</td></tr>
+<tr><td>🚶 Berjalan ×3,4</td><td>Jalan kaki sebagai perpindahan</td><td>Jalan ke kantor/pasar/masjid, keliling mal</td><td>Jalan khusus untuk berolahraga → <b>Olahraga ringan</b></td></tr>
+<tr><td>🧘 Olahraga ringan ×3,1</td><td>Latihan santai, napas masih normal</td><td>Jalan santai/pagi, yoga, peregangan, senam lansia</td><td>–</td></tr>
+<tr><td>🏃 Olahraga sedang ×5,2</td><td>Berkeringat, bisa bicara terputus</td><td>Jogging, bersepeda, senam aerobik, berenang, badminton</td><td>–</td></tr>
+<tr><td>🏋️ Olahraga berat ×6,3</td><td>Sangat melelahkan, sulit bicara</td><td>Lari cepat, HIIT, sepak bola, angkat beban intens</td><td>Hanya jam latihan aktif, bukan istirahat antar-set</td></tr>
+</table></div>
+<p class="note" style="color:var(--m);font-size:13px">Keterangan contoh adalah panduan praktis agar input konsisten antar-dokter. Pengali energinya adalah nilai bawaan aplikasi.</p>
+
+<h3>Contoh pengisian (3 profil pasien)</h3>
+<div class="sc"><table>
+<tr><th>Kategori</th><th>👔 Pegawai kantor</th><th>🩺 Perawat (shift pagi)</th><th>🏠 Ibu rumah tangga</th></tr>
+<tr><td>😴 Tidur</td><td>7</td><td>7</td><td>7</td></tr>
+<tr><td>🚿 Kegiatan dasar</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td>🪑 Duduk (perjalanan, TV)</td><td>3</td><td>3</td><td>6</td></tr>
+<tr><td>🧍 Berdiri</td><td>0,5</td><td>1</td><td>1</td></tr>
+<tr><td>💼 Bekerja ringan</td><td>8</td><td>0</td><td>0</td></tr>
+<tr><td>🔨 Bekerja sedang</td><td>0</td><td>8</td><td>0</td></tr>
+<tr><td>🧹 Tugas rumah tangga</td><td>1</td><td>1</td><td>5</td></tr>
+<tr><td>🚶 Berjalan</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>🧘 Olahraga ringan</td><td>0,5</td><td>0</td><td>0,5</td></tr>
+<tr><th>Total diisi</th><th>23</th><th>23</th><th>22,5</th></tr>
+<tr><td>⏳ Lainnya (otomatis)</td><td>1</td><td>1</td><td>1,5</td></tr>
+</table></div>
+<div class="tip">Contoh nilai awal yang sudah terisi di aplikasi (tidur 7, kegiatan dasar 2, bekerja ringan 5, berdiri 2, berjalan 1, duduk 5, tugas rumah 1) hanyalah contoh. <b>Ganti sesuai pasien</b>, jangan dibiarkan default.</div>
+
+<h3>Cek jam Anda: pengecek 24 jam</h3>
+<p>Coba isi di sini sebelum memasukkan ke NutriKalk. Total tidak boleh melebihi 24 jam.</p>
+<div class="grid" id="chk" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))"></div>
+<div class="box" id="chkr" style="text-align:center;font-weight:700"></div>
+
+<h3>Kesalahan input yang sering terjadi</h3>
+<ul>
+<li>❌ Jam kerja diisi <b>dua kali</b>: Bekerja ringan 8 jam <i>dan</i> Duduk 8 jam. Padahal duduk di meja kerja sudah termasuk Bekerja ringan.</li>
+<li>❌ Memasukkan <b>total &gt;24 jam</b>. Aplikasi akan menghentikan perhitungan dan menampilkan kotak merah.</li>
+<li>❌ Mengisi “Olahraga berat” untuk seluruh jam di gym, padahal sebagian besar adalah istirahat antar-set (isi hanya jam latihan aktif).</li>
+<li>❌ Memakai kebiasaan “hari libur” atau “hari terbaik pasien”. Pakai <b>rata-rata hari biasa</b>.</li>
+<li>❌ Memasukkan jam tidur lebih panjang dari kenyataan (jam berbaring di tempat tidur ≠ jam tidur).</li>
+<li>✅ Bila ragu antara dua kategori, pilih yang <b>lebih rendah</b> agar tidak melebihi kebutuhan, lalu evaluasi berat badan pasien pada kontrol berikutnya.</li>
+</ul>
+<div class="info">Bila “Bekerja ringan” dan “Duduk” sama-sama terisi, aplikasi menampilkan catatan pengingat agar jam tidak tumpang tindih. Artinya perlu dicek ulang, bukan error.</div>
+<h3>Hasil yang muncul</h3>
+<div class="grid">
+<div class="box"><b>BMR/REE</b><br>Energi basal sesuai metode terpilih</div>
+<div class="box"><b>RMR</b><br>Harris-Benedict sebagai pembanding</div>
+<div class="box"><b>TEE</b><br>Total energi harian = jumlah (jam × pengali × BMR per jam)</div>
+<div class="box"><b>Tingkat aktivitas (PAL)</b><br>TEE ÷ 24 ÷ BMR per jam. ≤1,6 Ringan · ≤1,8 Sedang · &gt;1,8 Berat</div>
+</div>
+<div class="info">Jika memakai metode tabel dan BB di luar rentang tabel, atau BMR tabel berbeda &gt;15% dari Harris-Benedict, aplikasi menampilkan catatan peringatan.</div>
+</section>
+
+<section id="l3">
+<h2><span class="n">3</span>Kondisi Klinis &amp; Kebutuhan Nutrien</h2>
+<p class="sub">Pilih satu atau beberapa kondisi. Kolom laboratorium yang relevan muncul otomatis.</p>
+<p>Tanpa kondisi khusus (⚖️ <b>Gizi Seimbang</b>), pembagian makronutrien standar adalah:</p>
+<div class="bar"><div style="width:55%;background:#f59e0b">Karbohidrat 55%</div><div style="width:20%;background:#ef4444">Protein 20%</div><div style="width:25%;background:#3b82f6">Lemak 25%</div></div>
+<p>Lemak dirinci: SFA 7% · MUFA 10% · PUFA 8% dari kalori. Tombol <b>Gizi Seimbang</b> mengosongkan semua pilihan kondisi.</p>
+
+<div class="chips" id="tabs">
+<button class="on" data-t="ob">🏋️ Obesitas</button><button data-t="dm">🩸 DM</button><button data-t="dl">🧈 Dislipidemia</button><button data-t="ht">❤️ Hipertensi</button><button data-t="hu">🦶 Hiperurisemia</button><button data-t="an">🩹 Anemia</button><button data-t="ck">🫘 CKD</button>
+</div>
+
+<div class="tabp on" id="t-ob"><div class="box">
+<b>Yang diisi:</b> pilih defisit kalori 250 / 500 / 750 / 1000 kkal per hari.<br>
+<b>Yang dihitung:</b> target kalori = TEE − defisit, serta estimasi penurunan BB per minggu (7.700 kkal ≈ 1 kg, angka kasar).<br>
+<b>Peringatan otomatis:</b> target di bawah 1.500 kkal (pria) / 1.200 kkal (wanita), atau di bawah BMR.<br>
+<b>Efek ke perhitungan:</b> mengubah target energi.</div></div>
+
+<div class="tabp" id="t-dm"><div class="box">
+<b>Yang diisi:</b> HbA1c (%) <i>opsional</i>.<br>
+<b>Yang dihitung:</b> KH per waktu makan dari menu aktual (termasuk camilan, sayur &amp; buah), batas gula bebas &lt;10% energi, dan interpretasi HbA1c.<br>
+<b>Edukasi:</b> pilih KH berserat/IG rendah, hindari minuman manis, jadwal 3 makan utama + 2 selingan.</div></div>
+
+<div class="tabp" id="t-dl"><div class="box">
+<b>Yang diisi:</b> LDL dan trigliserida <i>opsional</i>.<br>
+<b>Yang dihitung:</b> rincian SFA/MUFA/PUFA dan klasifikasi LDL (ATP III) serta TG.<br>
+<b>Edukasi:</b> serat 25–30 g/hari, hindari lemak trans dan santan.</div></div>
+
+<div class="tabp" id="t-ht"><div class="box">
+<b>Yang diisi:</b> tekanan darah sistolik/diastolik <i>opsional</i>.<br>
+<b>Yang dihitung:</b> batas natrium &lt;2.000 mg/hari (garam &lt;5 g ≈ 1 sdt) dan kategori TD.<br>
+<b>Edukasi:</b> kurangi makanan olahan/asin, tingkatkan kalium, magnesium, kalsium.</div></div>
+
+<div class="tabp" id="t-hu"><div class="box">
+<b>Yang diisi:</b> asam urat (mg/dL) <i>opsional</i>.<br>
+<b>Yang dihitung:</b> batas gula bebas dan perbandingan dengan ambang (7 mg/dL pria, 6 mg/dL wanita).<br>
+<b>Edukasi:</b> batasi jeroan, sarden, kerang, emping, daging merah, minuman manis.</div></div>
+
+<div class="tabp" id="t-an"><div class="box">
+<b>Yang diisi:</b> hemoglobin (g/dL) <i>opsional</i>.<br>
+<b>Yang dihitung:</b> perbandingan dengan batas WHO (13 g/dL pria, 12 g/dL wanita).<br>
+<b>Catatan:</b> kebutuhan zat besi tidak dihitung otomatis; etiologi (mis. feritin) perlu dinilai terpisah.</div></div>
+
+<div class="tabp" id="t-ck"><div class="box">
+<b>Kondisi paling kompleks, mengubah target protein.</b>
+<ul>
+<li><b>Kreatinin serum</b> (wajib, 0,2–15 mg/dL) → eGFR CKD-EPI 2021 dan kategori G1–G5.</li>
+<li><b>Albuminuria</b> (A1/A2/A3), <b>penanda kerusakan ginjal lain</b>, dan <b>kronisitas ≥3 bulan</b>: dipakai untuk menentukan apakah kriteria CKD terpenuhi. Tanpa konfirmasi, hasil hanya <i>estimasi eGFR</i>, bukan diagnosis.</li>
+<li><b>Status dialisis:</b> HD/PD rutin memakai protein 1,1 g/kg.</li>
+<li><b>Strategi protein</b> (non-dialisis, eGFR &lt;60): 0,8 g/kg (standar KDIGO 2024) · 0,6 g/kg (diawasi ketat) · 0,3–0,4 g/kg + EAA/ketoanalog (pasien terpilih).</li>
+<li><b>BB untuk Cockcroft-Gault</b> dan <b>BB untuk target protein</b>: Otomatis / Aktual / Ideal / Adjusted. Pada edema/asites pilih BB kering secara manual.</li>
+</ul>
+<b>Hasil:</b> eGFR, CrCl Cockcroft-Gault (untuk dosis obat), kategori KDIGO, dan protein (g/kg × BB = g/hari).</div></div>
+
+<h3>Penyakit penyerta: cek konflik</h3>
+<p>Jika memilih dua kondisi atau lebih, muncul kotak merah <b>“periksa konflik rekomendasi”</b>, misalnya DM + CKD (KH besar vs protein rendah) atau Hipertensi + CKD (kalium). Rekomendasi <b>tidak digabung otomatis</b>: hanya Obesitas (energi) dan CKD (protein) yang mengubah target, sisanya berupa ambang dan edukasi.</p>
+<div class="warn">Panel hasil dibagi dua bagian: <b>📐 Dihitung dari data pasien</b> (individual) dan <b>📖 Edukasi umum</b> (tidak individual). Jangan tertukar saat menjelaskan ke pasien.</div>
+</section>
+
+<section id="l4">
+<h2><span class="n">4</span>Pembagian Porsi per Waktu Makan</h2>
+<p class="sub">Tabel otomatis membagi kalori harian ke lima waktu makan.</p>
+<div class="sc"><table>
+<tr><th>Waktu</th><th>Porsi</th></tr>
+<tr><td>🌅 Sarapan</td><td>25%</td></tr>
+<tr><td>🍎 Selingan 1</td><td>7,5%</td></tr>
+<tr><td>☀️ Makan siang</td><td>35%</td></tr>
+<tr><td>🥜 Selingan 2</td><td>7,5%</td></tr>
+<tr><td>🌙 Makan malam</td><td>25%</td></tr>
+</table></div>
+<p>Tabel menampilkan nilai <b>tercapai</b> (dari menu yang dipilih, termasuk camilan, sayur, dan buah) dibandingkan dengan <b>target harian</b>. Total harus mendekati target.</p>
+</section>
+
+<section id="l5">
+<h2><span class="n">5</span>Konversi ke Makanan</h2>
+<p class="sub">Mengubah gram protein, karbohidrat, dan lemak menjadi takaran sehari-hari.</p>
+<h3>Cara memakai kartu waktu makan</h3>
+<ol class="st">
+<li>Pilih <b>Karbohidrat</b> (nasi putih/merah, roti, oat, mie, jagung, makaroni).</li>
+<li>Pilih <b>Protein hewani</b> (ayam, sapi, telur, ikan, udang, dll.) dan <b>Protein nabati</b> (tempe, tahu, kacang-kacangan, susu kedelai, dll.).</li>
+<li>Geser slider <b>proporsi protein hewani</b> (0–100%). Sisanya otomatis dari nabati.</li>
+<li>Baca takaran di sisi kanan tiap baris (angka oranye, mis. “2 centong”, “1,5 potong”) dan <b>minyak tambahan</b> dalam sdt.</li>
+<li>Untuk <b>Selingan 1 &amp; 2</b>, pilih satu camilan: apel, pisang ambon, yogurt, puding chia, atau almond.</li>
+<li>Atur <b>jenis dan gram sayur &amp; buah</b> per hari di bagian bawah.</li>
+</ol>
+<h3>Algoritma: bukan sekadar kalori</h3>
+<div class="grid">
+<div class="box"><span class="ic">🍗</span><b>Lauk</b><br>dihitung dari target <b>gram protein</b>, setelah dikurangi protein dari sumber karbohidrat.</div>
+<div class="box"><span class="ic">🍚</span><b>Karbohidrat</b><br>dihitung dari sisa <b>gram KH</b> setelah dikurangi KH dari lauk.</div>
+<div class="box"><span class="ic">🫒</span><b>Minyak</b><br>hanya menambal <b>sisa lemak</b> setelah lemak dari semua makanan.</div>
+</div>
+<h3>Membaca kotak “Tercapai / target”</h3>
+<p>Setiap kartu menampilkan KH, protein, lemak, dan kalori yang tercapai dibanding target. Kotak berubah <b>oranye</b> bila selisih &gt;10% atau ada peringatan, misalnya:</p>
+<ul>
+<li>Bahan melebihi batas porsi wajar per waktu makan.</li>
+<li>Lemak dari makanan sudah melebihi target (minyak tambahan jadi 0).</li>
+<li>Protein dari sumber KH sudah melampaui target.</li>
+</ul>
+<div class="tip">Bila muncul <b>💡 Alternatif yang memenuhi target</b>, klik tombol <b>Terapkan</b> untuk memakai kombinasi bahan yang disarankan dengan perubahan minimal. Jika muncul ❌ “tidak ada kombinasi yang memenuhi”, turunkan target, ubah proporsi protein, atau sesuaikan secara klinis.</div>
+<div class="warn">Bila ada waktu makan yang tidak realistis, muncul peringatan di atas bagian sayur/buah: <b>jangan berikan rencana ini tanpa penyesuaian.</b></div>
+<h3>Sayur &amp; buah, serta batas harian</h3>
+<ul>
+<li>Anjuran total sayur + buah <b>400–600 g/hari</b> (di luar itu muncul tanda ⚠️). Kontribusi kalorinya sudah masuk hitungan.</li>
+<li>Pada CKD perhatikan kalium dari sayur &amp; buah.</li>
+<li>Kartu <b>Batas Harian Anjuran</b>: gula bebas &lt;10% energi, natrium &lt;2.000 mg, total lemak, dan SFA/MUFA/PUFA.</li>
+</ul>
+</section>
+
+<section id="output">
+<h2>📤 Cetak, PDF &amp; Kirim via WhatsApp</h2>
+<div class="grid">
+<div class="box"><span class="ic">🖨️</span><b>Cetak / Simpan PDF</b><br>Tombol oranye di bawah. Tampilan cetak otomatis menyembunyikan header dan tombol.</div>
+<div class="box"><span class="ic">💬</span><b>Rekap untuk WhatsApp</b><br>Menyusun teks siap kirim: data pasien, kebutuhan harian, menu &amp; takaran, sayur-buah, batas harian.</div>
+</div>
+<ol class="st">
+<li>Klik <b>💬 Rekap untuk WhatsApp</b>. Kotak teks muncul.</li>
+<li>Edit teks bila perlu (nama, catatan tambahan).</li>
+<li>Klik <b>📲 Kirim ke WhatsApp</b> atau <b>📋 Salin teks</b>.</li>
+</ol>
+<div class="warn">Jika rencana belum realistis, rekap otomatis diberi tulisan <b>“DRAFT”</b> di awal. Perbaiki dulu sebelum dikirim ke pasien.</div>
+</section>
+
+<section id="faq">
+<h2>❓ Tanya Jawab &amp; Tips</h2>
+<details><summary>Kenapa perhitungan tiba-tiba hilang dan muncul kotak merah?</summary><p>Ada input di luar batas valid (usia, BB, TB, total jam &gt;24, atau nilai lab tidak wajar). Perbaiki sesuai daftar di kotak merah.</p></details>
+<details><summary>Metode BMR mana yang sebaiknya dipakai?</summary><p>Mifflin-St Jeor (default). Metode tabel sumbernya belum tercantum, jadi gunakan sebagai pembanding saja.</p></details>
+<details><summary>Kenapa takaran makanan berubah saat saya ganti jenis lauk?</summary><p>Karena takaran dihitung dari kandungan protein, KH, dan lemak tiap bahan, bukan hanya kalori. Lauk berprotein berbeda menghasilkan gram berbeda.</p></details>
+<details><summary>Apakah saya bisa memilih lebih dari satu kondisi?</summary><p>Ya. Aplikasi menampilkan panel tiap kondisi dan daftar konflik antar-kondisi, tetapi tidak menggabungkan rekomendasi secara otomatis. Penyesuaian oleh dokter/ahli gizi tetap diperlukan.</p></details>
+<details><summary>Apakah data pasien tersimpan?</summary><p>Tidak. Segera setelah halaman ditutup atau dimuat ulang, semua data hilang. Simpan hasilnya sebagai PDF atau salin teks rekap jika perlu arsip.</p></details>
+<details><summary>Seberapa akurat data gizi makanannya?</summary><p>Nilai bahan adalah pendekatan (kelas USDA FDC / TKPI) dan <b>belum diverifikasi per item</b>. Energi dihitung 4/4/9 kkal per g P/KH/L. Buka bagian “Database bahan makanan” di bawah aplikasi untuk melihat semua nilai, dan cocokkan dengan TKPI 2017 sebelum dipakai untuk pasien.</p></details>
+<details><summary>Foto makanan tidak muncul, kenapa?</summary><p>Sebagian foto dimuat dari internet (Wikimedia). Tanpa koneksi, emoji ditampilkan sebagai gantinya; perhitungan tidak terpengaruh.</p></details>
+<h3>Alur kerja yang disarankan</h3>
+<ol class="st">
+<li>Isi data pasien dan aktivitas realistis.</li>
+<li>Pilih kondisi klinis dan isi data lab yang tersedia.</li>
+<li>Periksa panel konflik dan peringatan merah/oranye.</li>
+<li>Sesuaikan jenis makanan bersama pasien (sesuai selera dan budget).</li>
+<li>Pastikan semua kotak “tercapai / target” hijau, lalu cetak atau kirim rekap.</li>
+</ol>
+</section>
+
+<div class="cta"><h2>Siap dipakai? 🎉</h2><p>Buka NutriKalk dan coba dengan data pasien contoh.</p><button class="btn" onclick="print()">🖨️ Cetak panduan ini</button></div>
+<p class="disc">NutriKalk adalah alat bantu hitung untuk tenaga kesehatan, bukan pengganti penilaian klinis. Hasil perlu dikonfirmasi dengan pertimbangan dokter/ahli gizi dan data gizi TKPI 2017.</p>
+</main>
+<script>
+const ACT=[['😴 Tidur',7],['🚿 Kegiatan dasar',2],['🪑 Duduk',5],['🧍 Berdiri',2],['💼 Bekerja ringan',5],['🔨 Bekerja sedang',0],['🏗️ Bekerja berat',0],['🧹 Tugas rumah',1],['🚶 Berjalan',1],['🧘 Olahraga ringan',0],['🏃 Olahraga sedang',0],['🏋️ Olahraga berat',0]];
+const ck=document.getElementById('chk');
+ck.innerHTML=ACT.map((a,i)=>`<label style="font-size:13px">${a[0]}<input type="number" min="0" max="24" step="0.5" value="${a[1]}" data-i="${i}" style="width:100%;padding:7px;border:1.5px solid var(--l);border-radius:9px;background:var(--c);color:var(--t)"></label>`).join('');
+function chkUpd(){let t=0;ck.querySelectorAll('input').forEach(i=>t+=+i.value||0);const r=document.getElementById('chkr'),sisa=24-t;
+ const ov=(+ck.querySelector('[data-i="4"]').value>0&&+ck.querySelector('[data-i="2"]').value>0);
+ r.style.background=t>24?'#fee2e2':'var(--bg)';r.style.color=t>24?'#991b1b':'var(--t)';
+ r.innerHTML=t>24?`⛔ Total ${t} jam melebihi 24 jam. Kurangi ${(t-24)} jam.`:`✅ Total diisi ${t} jam · Lainnya otomatis ${sisa} jam`+(ov?'<br><small>ℹ️ “Bekerja ringan” dan “Duduk” sama-sama terisi: pastikan jam tidak tumpang tindih.</small>':'')}
+ck.addEventListener('input',chkUpd);chkUpd();
+const pg=document.getElementById('pg');
+const links=[...document.querySelectorAll('#nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{
+ const h=document.documentElement;pg.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+ let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<120)cur=i});
+ links.forEach((a,i)=>a.classList.toggle('on',i==cur));
+});
+document.getElementById('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x==b));
+ document.querySelectorAll('.tabp').forEach(p=>p.classList.toggle('on',p.id=='t-'+b.dataset.t))};
+</script>
+</body></html>
