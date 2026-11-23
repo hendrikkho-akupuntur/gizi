@@ -1,344 +1,277 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Panduan Penggunaan NutriKalk v3.1</title>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NutriKalk v3.1 – Kalkulator Kebutuhan Gizi &amp; Konversi Makanan</title>
 <style>
-:root{--g:#0f766e;--g2:#14b8a6;--lime:#84cc16;--bg:#f0fdfa;--c:#fff;--t:#0f172a;--m:#64748b;--l:#e2e8f0;--o:#f97316;--ob:#fff7ed;--r:18px;--red:#dc2626;--sh:0 6px 24px #0f172a14}
-@media(prefers-color-scheme:dark){:root{--bg:#06201d;--c:#0d2f2b;--t:#e6fffb;--m:#9fc5c0;--l:#1d4a44;--ob:#3a2412;--sh:0 6px 24px #0008}}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);line-height:1.65}
-#pg{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--o),var(--lime));z-index:99}
-header{background:linear-gradient(135deg,#0f766e,#14b8a6 60%,#84cc16);color:#fff;text-align:center;padding:44px 18px 56px;position:relative;overflow:hidden}
-header:before,header:after{content:"";position:absolute;border-radius:50%;background:#ffffff1c}
-header:before{width:260px;height:260px;left:-70px;top:-90px}header:after{width:200px;height:200px;right:-50px;bottom:-80px}
-header .em{font-size:56px;display:block;animation:fl 3s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-8px)}}
-header h1{margin:6px 0 4px;font-size:clamp(26px,5vw,40px)}header p{margin:0 auto;max-width:600px;opacity:.95}
-.pill{display:inline-block;background:#fff3;border:1px solid #fff6;padding:4px 14px;border-radius:99px;font-size:13px;margin-top:14px}
-nav{position:sticky;top:0;z-index:50;background:var(--c);box-shadow:0 2px 12px #0f172a18;overflow-x:auto;white-space:nowrap;padding:8px 10px;text-align:center;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
-nav a{display:inline-block;margin:2px 3px;padding:6px 13px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--g);text-decoration:none;transition:.2s}
-nav a:hover,nav a.on{background:var(--g);color:#fff}
-main{max-width:960px;margin:22px auto 50px;padding:0 14px;position:relative}
-section{background:var(--c);border-radius:var(--r);box-shadow:var(--sh);padding:24px;margin-bottom:20px}
-section>h2{margin:0 0 6px;font-size:22px;color:var(--g);display:flex;align-items:center;gap:10px}
-section>h2 .n{background:var(--g);color:#fff;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:16px;flex:none}
-.sub{color:var(--m);margin:0 0 14px}
-h3{color:var(--g);margin:20px 0 6px;font-size:17px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0}
-.box{background:var(--bg);border-radius:14px;padding:14px;border:1.5px solid var(--l)}
-.box b{color:var(--g)}.box .ic{font-size:28px;display:block;margin-bottom:4px}
-.tip,.warn,.info{border-left:5px solid var(--o);background:var(--ob);padding:11px 14px;border-radius:10px;margin:12px 0;font-size:14.5px}
-.warn{border-color:var(--red)}.info{border-color:var(--g2);background:var(--bg)}
-.tip:before{content:"💡 ";}.warn:before{content:"⚠️ ";}.info:before{content:"ℹ️ ";}
-table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0}
-th,td{padding:8px 10px;border-bottom:1px solid var(--l);text-align:left;vertical-align:top}
-th{background:var(--bg);color:var(--g);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
-.sc{overflow-x:auto}
-.badge{display:inline-block;padding:2px 10px;border-radius:99px;color:#fff;font-size:12.5px;font-weight:700}
-code,.f{background:var(--bg);border:1px solid var(--l);padding:2px 7px;border-radius:7px;font-size:13.5px}
-.f{display:block;margin:8px 0;padding:10px 14px;font-family:ui-monospace,Menlo,monospace;overflow-x:auto}
-ol.st{list-style:none;padding:0;counter-reset:s}
-ol.st li{counter-increment:s;position:relative;padding:8px 0 8px 46px}
-ol.st li:before{content:counter(s);position:absolute;left:0;top:6px;width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--o),#fb923c);color:#fff;font-weight:800;display:grid;place-items:center}
-.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:14px 0}
-.flow span{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:9px 14px;border-radius:12px;font-weight:700;font-size:14px}
-.flow i{color:var(--o);font-style:normal;font-weight:900;font-size:20px}
-.bar{display:flex;height:28px;border-radius:99px;overflow:hidden;color:#fff;font-weight:700;font-size:12.5px;margin:10px 0}
-.bar div{display:grid;place-items:center}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-.chips button{padding:9px 15px;border:1.5px solid var(--l);background:var(--c);color:var(--t);border-radius:99px;cursor:pointer;font-size:14px;font-weight:600}
-.chips button.on{background:var(--o);border-color:var(--o);color:#fff}
-.tabp{display:none;animation:in .3s}.tabp.on{display:block}
-@keyframes in{from{opacity:0;transform:translateY(6px)}}
-details{border:1.5px solid var(--l);border-radius:12px;padding:2px 14px;margin:8px 0;background:var(--c)}
-summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--g)}
-details[open]{border-color:var(--g2)}
-.cta{text-align:center;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-radius:var(--r);padding:26px;margin-bottom:20px}
-.cta h2{margin:0 0 6px;color:#fff;display:block}
-.disc{font-size:12.5px;color:var(--m);text-align:center}
-ul{padding-left:20px}li{margin:4px 0}
-.btn{background:var(--o);color:#fff;border:0;padding:10px 20px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px}
-@media print{header,nav,#pg,.cta .btn{display:none}main{margin:0}section{box-shadow:none;break-inside:avoid}}
+:root{--g:#0f766e;--g2:#14b8a6;--bg:#f0fdfa;--c:#fff;--t:#0f172a;--m:#64748b;--l:#e2e8f0;--o:#f97316;--r:16px}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--t)}
+header{background:linear-gradient(135deg,#0f766e,#14b8a6 60%,#84cc16);color:#fff;padding:28px 16px 70px;text-align:center}
+header h1{margin:0;font-size:28px}header p{margin:6px 0 0;opacity:.9}
+main{max-width:1050px;margin:-48px auto 40px;padding:0 14px}
+.card{background:var(--c);border-radius:var(--r);box-shadow:0 4px 18px #0f172a14;padding:18px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:18px;color:var(--g);display:flex;gap:8px;align-items:center}
+.step{background:var(--g);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-grid;place-items:center;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+label{font-size:12px;color:var(--m);font-weight:600;display:block;margin-bottom:4px}
+input,select{width:100%;padding:9px 10px;border:1.5px solid var(--l);border-radius:10px;font-size:15px;background:#fff}
+input:focus,select:focus{outline:none;border-color:var(--g2);box-shadow:0 0 0 3px #14b8a633}
+.seg{display:flex;gap:8px}.seg button{flex:1;padding:10px;border:1.5px solid var(--l);background:#fff;border-radius:10px;font-size:15px;cursor:pointer}
+.seg button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+.k{background:var(--bg);border-radius:12px;padding:12px;text-align:center}.k b{display:block;font-size:22px;color:var(--g)}.k span{font-size:12px;color:var(--m)}
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:13px;font-weight:700;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:7px 8px;border-bottom:1px solid var(--l);text-align:right}th:first-child,td:first-child{text-align:left}th{background:var(--bg);color:var(--g);font-size:12px}
+.act{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}.act div{display:flex;align-items:center;gap:8px;background:var(--bg);padding:6px 10px;border-radius:10px}.act span{flex:1;font-size:13px}.act input{width:70px;padding:5px}
+.bar{display:flex;height:22px;border-radius:99px;overflow:hidden;margin:10px 0;font-size:11px;color:#fff;font-weight:700}.bar div{display:grid;place-items:center}
+.meals{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.meal{border:1.5px solid var(--l);border-radius:var(--r);overflow:hidden}.meal>h3{margin:0;padding:10px 14px;background:linear-gradient(90deg,var(--g),var(--g2));color:#fff;font-size:16px;display:flex;justify-content:space-between}
+.meal .in{padding:10px 14px}.row{display:flex;gap:10px;align-items:center;margin:10px 0}
+.pic{width:64px;height:64px;border-radius:12px;background:#ecfccb;display:grid;place-items:center;font-size:34px;position:relative;overflow:hidden;flex:none}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.row .f{flex:1;min-width:0}.row .f small{display:block;color:var(--m);font-size:12px;margin-top:3px}.amt{font-size:18px;font-weight:800;color:var(--o)}
+.note{font-size:12.5px;color:var(--m);line-height:1.5}.tip{background:#fff7ed;border-left:4px solid var(--o);padding:10px 12px;border-radius:8px;font-size:13.5px;margin-top:10px}
+.btn{background:var(--o);color:#fff;border:0;padding:10px 18px;border-radius:10px;font-weight:700;cursor:pointer;font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips button{padding:9px 14px;border:1.5px solid var(--l);background:#fff;border-radius:99px;cursor:pointer;font-size:14px}.chips button.on{background:var(--o);border-color:var(--o);color:#fff;font-weight:700}.pn{border:1.5px solid var(--l);border-radius:var(--r);padding:14px;margin-top:14px}.pn h3{margin:0 0 8px;color:var(--g);font-size:16px}.pn li{margin:5px 0;font-size:14px;line-height:1.45}tr.hl td{background:#fff7ed;font-weight:700;color:var(--o)}.sc{overflow-x:auto}@media print{header,.noprint{display:none}main{margin:0}.card{box-shadow:none}}
+.err{background:#fef2f2;border:1.5px solid #dc2626;color:#991b1b;border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:14px}.err li{margin:3px 0}
+.sec{font-size:12px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.04em;margin:12px 0 4px;border-bottom:1px solid var(--l);padding-bottom:3px}
+.sec.edu{color:var(--m)}.chk{font-size:12.5px;background:var(--bg);border-radius:10px;padding:8px 10px;margin-top:8px;line-height:1.5}.chk.w{background:#fff7ed}
+.st{font-weight:400;color:var(--m);font-size:12px}.warn{background:#fff7ed;border-left:4px solid #dc2626;padding:8px 12px;border-radius:8px;font-size:13.5px;margin-top:8px}
+.lab{display:none}.disc{font-size:12px;color:var(--m);line-height:1.55}
 </style></head><body>
-<div id="pg"></div>
-<header>
-<span class="em">🥗</span>
-<h1>Panduan Penggunaan NutriKalk</h1>
-<p>Kalkulator kebutuhan gizi &amp; konversi ke makanan untuk Dokter Gizi &amp; Dokter Keluarga</p>
-<span class="pill">Versi 3.1 · berbahasa Indonesia · tanpa instalasi</span>
-</header>
-<nav id="nav">
-<a href="#mulai">Mulai Cepat</a><a href="#l1">1 Data Pasien</a><a href="#l2">2 BMR &amp; Aktivitas</a><a href="#l3">3 Kondisi Klinis</a><a href="#l4">4 Porsi</a><a href="#l5">5 Makanan</a><a href="#output">Cetak &amp; WA</a><a href="#faq">FAQ</a>
-</nav>
+<header><h1>🥗 NutriKalk <small style="font-size:14px">v3.1</small></h1><p>Kalkulator kebutuhan gizi &amp; konversi ke makanan — untuk Dokter Gizi &amp; Dokter Keluarga</p></header>
 <main>
-
-<section id="mulai">
-<h2>🚀 Mulai Cepat</h2>
-<p class="sub">NutriKalk menghitung kebutuhan energi dan makronutrien pasien dewasa, lalu mengubahnya menjadi takaran makanan nyata (centong, potong, butir, sdt) per waktu makan.</p>
-<div class="flow"><span>Data pasien</span><i>→</i><span>Energi (TEE)</span><i>→</i><span>Kondisi klinis</span><i>→</i><span>Porsi</span><i>→</i><span>Menu</span></div>
+<div id="err" class="err" style="display:none"></div>
+<div class="card"><h2><span class="step">1</span>Data Pasien &amp; Status Gizi (IMT)</h2>
 <div class="grid">
-<div class="box"><span class="ic">📂</span><b>Buka</b><br>Buka file di browser anda.</div>
-<div class="box"><span class="ic">⚡</span><b>Hasil real-time</b><br>Setiap angka yang diubah langsung memperbarui seluruh hasil. Tidak ada tombol “Hitung”.</div>
-<div class="box"><span class="ic">🔒</span><b>Privasi</b><br>Data pasien tidak disimpan oleh aplikasi. Menutup halaman akan menghapus semuanya.</div>
+<div><label>Nama pasien</label><input id="nm" placeholder="Opsional"></div>
+<div><label>Jenis kelamin</label><div class="seg"><button id="sP" class="on">👨 Pria</button><button id="sW">👩 Wanita</button></div></div>
+<div><label>Usia (tahun, ≥18)</label><input id="age" type="number" value="38"></div>
+<div><label>Berat badan (kg)</label><input id="bb" type="number" step="0.1" value="66.7"></div>
+<div><label>Tinggi badan (cm)</label><input id="tb" type="number" value="166"></div></div>
+<div class="kpi" id="imt"></div></div>
+
+<div class="card"><h2><span class="step">2</span>BMR, RMR &amp; Aktivitas Harian (TEE)</h2>
+<div class="grid"><div><label>Metode BMR/REE</label><select id="bm"><option value="ms">Mifflin-St Jeor (1990) — disarankan</option><option value="hb">Harris-Benedict (1919)</option><option value="tb">Tabel faktor kkal/kg (sumber belum tercantum)</option></select></div>
+<div id="fkw" style="display:none"><label>Faktor penggali tabel (kkal/kg/hari; kosong = interpolasi tabel)</label><input id="fk" type="number" step="0.1"></div></div>
+<p class="note" id="fkn"></p>
+<label style="margin-top:10px">Durasi kegiatan (jam) — total maksimal 24 jam, sisanya masuk “Lainnya”. <b>Kategori harus saling eksklusif</b> (satu jam hanya boleh masuk satu kategori)</label>
+<div class="act" id="act"></div>
+<div class="kpi" id="tee"></div></div>
+
+<div class="card"><h2><span class="step">3</span>Kondisi Klinis &amp; Kebutuhan Nutrien</h2>
+<label>Pilih kondisi (boleh lebih dari satu; pilih “Gizi Seimbang” untuk mengosongkan)</label><div class="chips" id="chips"></div><input type="hidden" id="cond" value="n">
+<div class="grid" id="labs" style="margin-top:12px">
+<div class="lab" data-f="ob"><label>Defisit kalori (kkal/hari)</label><select id="def"><option>250</option><option selected>500</option><option>750</option><option>1000</option></select></div>
+<div class="lab" data-f="dm"><label>HbA1c (%) – opsional</label><input id="hba" type="number" step="0.1"></div>
+<div class="lab" data-f="ht"><label>TD sistolik (mmHg) – opsional</label><input id="sbp" type="number"></div>
+<div class="lab" data-f="ht"><label>TD diastolik (mmHg) – opsional</label><input id="dbp" type="number"></div>
+<div class="lab" data-f="dl"><label>LDL (mg/dL) – opsional</label><input id="ldl" type="number"></div>
+<div class="lab" data-f="dl"><label>Trigliserida (mg/dL) – opsional</label><input id="tg" type="number"></div>
+<div class="lab" data-f="hu"><label>Asam urat (mg/dL) – opsional</label><input id="ua" type="number" step="0.1"></div>
+<div class="lab" data-f="an"><label>Hemoglobin (g/dL) – opsional</label><input id="hb" type="number" step="0.1"></div>
+<div class="lab" data-f="ck"><label>Kreatinin serum (mg/dL)</label><input id="cr" type="number" step="0.01" value="1"></div>
+<div class="lab" data-f="ck"><label>Albuminuria</label><select id="alb"><option value="">Belum diperiksa</option><option>A1</option><option>A2</option><option>A3</option></select></div>
+<div class="lab" data-f="ck"><label>Status dialisis</label><select id="dlz"><option value="0">Tidak dialisis</option><option value="1">HD / PD rutin</option></select></div>
+<div class="lab" data-f="ck"><label>Strategi protein (non-dialisis, eGFR &lt;60)</label><select id="pst"><option value="0.8">0,8 g/kg (standar KDIGO 2024)</option><option value="0.6">0,6 g/kg (diawasi ketat)</option><option value="0.35">0,3–0,4 g/kg + EAA/ketoanalog (pasien terpilih)</option></select></div>
+<div class="lab" data-f="ck"><label>BB untuk Cockcroft-Gault</label><select id="cgw"><option value="auto">Otomatis</option><option value="akt">Aktual</option><option value="ibw">Ideal</option><option value="adj">Adjusted</option></select></div>
+<div class="lab" data-f="ck"><label>BB untuk target protein</label><select id="pbw"><option value="auto">Otomatis (aktual bila IMT &lt;25; adjusted bila ≥25)</option><option value="akt">Aktual</option><option value="ibw">Ideal</option><option value="adj">Adjusted</option></select></div>
+<div class="lab" data-f="ck"><label>Penanda kerusakan ginjal lain</label><label style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--t)"><input type="checkbox" id="mrk" style="width:auto"> Sedimen/struktural/histologi/riwayat transplantasi</label></div>
+<div class="lab" data-f="ck"><label>Kronisitas</label><label style="display:flex;gap:6px;align-items:center;font-size:13px;color:var(--t)"><input type="checkbox" id="chr" style="width:auto"> Gangguan ginjal ≥3 bulan terkonfirmasi</label></div>
 </div>
-<div class="tip">Aplikasi sudah terisi contoh pasien (pria, 38 th, 66,7 kg, 166 cm). Ubah saja angkanya agar langsung melihat cara kerjanya.</div>
-</section>
+<div id="nut"></div><div id="pnl"></div></div>
 
-<section id="l1">
-<h2><span class="n">1</span>Data Pasien &amp; Status Gizi</h2>
-<p class="sub">Isi identitas dan antropometri. IMT dan status gizi muncul otomatis.</p>
-<div class="sc"><table>
-<tr><th>Kolom</th><th>Cara isi</th><th>Batas valid</th></tr>
-<tr><td>Nama pasien</td><td>Opsional; hanya dipakai pada rekap WhatsApp</td><td>–</td></tr>
-<tr><td>Jenis kelamin</td><td>Tombol 👨 Pria / 👩 Wanita (memengaruhi BMR, eGFR, batas Hb)</td><td>–</td></tr>
-<tr><td>Usia</td><td>Tahun</td><td>18–110 (khusus dewasa)</td></tr>
-<tr><td>Berat badan</td><td>kg, boleh desimal</td><td>20–300</td></tr>
-<tr><td>Tinggi badan</td><td>cm</td><td>100–230</td></tr>
-</table></div>
-<h3>Klasifikasi IMT (WHO Asia Pasifik)</h3>
-<div class="chips" style="gap:6px">
-<span class="badge" style="background:#3b82f6">&lt; 18,5 Underweight</span>
-<span class="badge" style="background:#16a34a">18,5–22,9 Normal</span>
-<span class="badge" style="background:#f59e0b">23–24,9 Overweight</span>
-<span class="badge" style="background:#ea580c">25–29,9 Obesitas I</span>
-<span class="badge" style="background:#dc2626">≥ 30 Obesitas II</span>
+<div id="res">
+<div class="card"><h2><span class="step">4</span>Pembagian Porsi per Waktu Makan</h2><div class="sc" id="por"></div></div>
+
+<div class="card"><h2><span class="step">5</span>Konversi ke Makanan <small class="note">— takaran dihitung dari kandungan protein, karbohidrat &amp; lemak (bukan hanya kalori)</small></h2>
+<p class="note">Algoritma: lauk dihitung dari target <b>gram protein</b> (setelah dikurangi protein dari sumber karbohidrat); karbohidrat dihitung dari sisa <b>gram KH</b> setelah dikurangi KH dari lauk; minyak hanya menambal <b>sisa lemak</b> setelah lemak dari semua makanan.</p>
+<div class="meals" id="meals"></div>
+<div id="sb" class="grid" style="margin-top:14px"></div>
+<div id="feas"></div><div class="grid" style="margin-top:10px"><div><label>Jenis sayur</label><select class="ms" id="svt" onchange="conv()"></select></div><div><label>Sayur (g/hari)</label><input id="sy" min="0" type="number" value="250"></div><div><label>Jenis buah (di luar camilan)</label><select class="ms" id="bht" onchange="conv()"></select></div><div><label>Buah (g/hari)</label><input id="bh" min="0" type="number" value="150"></div></div></div>
+
+<div class="card"><h2>📌 Batas Harian Anjuran</h2><div class="kpi" id="lim"></div>
+<p class="note">Lemak tak jenuh (zaitun, canola, jagung, biji matahari) sebaiknya ditambahkan setelah makanan matang. Batasi lemak trans (gorengan, kue, mentega), santan dan daging berkulit.</p>
+<div class="noprint"><button class="btn" onclick="print()">🖨️ Cetak / Simpan PDF</button> <button class="btn" style="background:#16a34a" onclick="rekap()">💬 Rekap untuk WhatsApp</button></div>
+<div id="wa" class="noprint" style="display:none;margin-top:14px"><label>Teks rekap (bisa diedit sebelum dikirim)</label><textarea id="wat" style="width:100%;height:380px;padding:12px;border:1.5px solid var(--l);border-radius:12px;font:14px/1.5 system-ui"></textarea>
+<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" style="background:#16a34a" onclick="sendWA()">📲 Kirim ke WhatsApp</button><button class="btn" onclick="copyWA()" id="cpb">📋 Salin teks</button></div></div></div>
 </div>
-<p>Selain IMT, ditampilkan juga <b>BB maksimal normal</b> (berat pada IMT 22,9) sebagai patokan target berat badan.</p>
-<div class="warn">Jika ada nilai di luar batas, kotak merah muncul dan seluruh perhitungan <b>dihentikan</b> sampai input diperbaiki. Ini fitur keamanan, bukan error.</div>
-</section>
-
-<section id="l2">
-<h2><span class="n">2</span>BMR, RMR &amp; Aktivitas Harian (TEE)</h2>
-<p class="sub">Menentukan total kebutuhan energi per hari.</p>
-<h3>Pilih metode BMR/REE</h3>
-<div class="sc"><table>
-<tr><th>Metode</th><th>Keterangan</th></tr>
-<tr><td>⭐ Mifflin-St Jeor (1990)</td><td><b>Disarankan.</b> Pria: 10×BB + 6,25×TB − 5×usia + 5; wanita: … − 161</td></tr>
-<tr><td>Harris-Benedict (1919)</td><td>Koefisien klasik; cenderung lebih tinggi dari pengukuran modern. RMR Harris-Benedict selalu ditampilkan sebagai pembanding.</td></tr>
-<tr><td>Tabel faktor kkal/kg</td><td>BMR = BB × faktor (interpolasi menurut usia &amp; BB). Sumber tabel belum tercantum, pakai sebagai pembanding. Faktor manual boleh diisi (15–40 kkal/kg/hari); kosong = otomatis.</td></tr>
-</table></div>
-<h3>Isi durasi kegiatan sehari (jam)</h3>
-<div class="info">Prinsipnya: <b>ceritakan 24 jam kemarin</b> dari bangun tidur sampai tidur lagi, lalu masukkan tiap jam ke <b>satu kategori saja</b>. Jam yang tidak terisi otomatis menjadi “⏳ Lainnya” (×1,4), jadi tidak perlu dipaksa genap 24.</div>
-<div class="sc"><table>
-<tr><th>Kategori (pengali)</th><th>Dihitung sebagai…</th><th>Contoh</th><th>Jangan dicampur dengan</th></tr>
-<tr><td>😴 Tidur ×1</td><td>Waktu benar-benar tidur</td><td>Tidur malam, tidur siang</td><td>Berbaring sambil main HP → <b>Duduk</b></td></tr>
-<tr><td>🚿 Kegiatan dasar ×1,4</td><td>Perawatan diri harian</td><td>Mandi, berpakaian, makan, ibadah, mengobrol santai</td><td>Memasak/mencuci → <b>Tugas rumah tangga</b></td></tr>
-<tr><td>🪑 Duduk ×1,4</td><td>Duduk <b>di luar pekerjaan</b></td><td>Nonton TV, main HP, duduk di kendaraan, menyetir, bersantai</td><td>Duduk di meja kerja → <b>Bekerja ringan</b></td></tr>
-<tr><td>🧍 Berdiri ×1,5</td><td>Berdiri tanpa banyak berpindah</td><td>Antre, berdiri di bus/KRL, ngobrol sambil berdiri</td><td>Berdiri sambil bekerja → kategori <b>Bekerja</b></td></tr>
-<tr><td>💼 Bekerja ringan ×1,7</td><td>Pekerjaan dominan duduk/sedikit gerak</td><td>Pegawai kantor, programmer, dokter praktik di meja, kasir duduk, sopir</td><td>Jam kerja jangan diisi lagi di Duduk/Berdiri</td></tr>
-<tr><td>🔨 Bekerja sedang ×2,2</td><td>Pekerjaan banyak berdiri/berjalan dengan beban ringan–sedang</td><td>Perawat, guru, pedagang pasar, teknisi, pelayan restoran</td><td>Jangan campur dengan Berjalan untuk jam yang sama</td></tr>
-<tr><td>🏗️ Bekerja berat ×2,8</td><td>Pekerjaan fisik berat</td><td>Kuli bangunan, petani mencangkul, buruh angkut, tukang las</td><td>Isi hanya bila benar-benar angkat/dorong beban</td></tr>
-<tr><td>🧹 Tugas rumah tangga ×2,5</td><td>Pekerjaan rumah aktif</td><td>Menyapu, mengepel, mencuci, menyetrika, memasak, mengasuh anak aktif</td><td>Makan &amp; duduk santai bukan tugas rumah</td></tr>
-<tr><td>🚶 Berjalan ×3,4</td><td>Jalan kaki sebagai perpindahan</td><td>Jalan ke kantor/pasar/masjid, keliling mal</td><td>Jalan khusus untuk berolahraga → <b>Olahraga ringan</b></td></tr>
-<tr><td>🧘 Olahraga ringan ×3,1</td><td>Latihan santai, napas masih normal</td><td>Jalan santai/pagi, yoga, peregangan, senam lansia</td><td>–</td></tr>
-<tr><td>🏃 Olahraga sedang ×5,2</td><td>Berkeringat, bisa bicara terputus</td><td>Jogging, bersepeda, senam aerobik, berenang, badminton</td><td>–</td></tr>
-<tr><td>🏋️ Olahraga berat ×6,3</td><td>Sangat melelahkan, sulit bicara</td><td>Lari cepat, HIIT, sepak bola, angkat beban intens</td><td>Hanya jam latihan aktif, bukan istirahat antar-set</td></tr>
-</table></div>
-<p class="note" style="color:var(--m);font-size:13px">Keterangan contoh adalah panduan praktis agar input konsisten antar-dokter. Pengali energinya adalah nilai bawaan aplikasi.</p>
-
-<h3>Contoh pengisian (3 profil pasien)</h3>
-<div class="sc"><table>
-<tr><th>Kategori</th><th>👔 Pegawai kantor</th><th>🩺 Perawat (shift pagi)</th><th>🏠 Ibu rumah tangga</th></tr>
-<tr><td>😴 Tidur</td><td>7</td><td>7</td><td>7</td></tr>
-<tr><td>🚿 Kegiatan dasar</td><td>2</td><td>2</td><td>2</td></tr>
-<tr><td>🪑 Duduk (perjalanan, TV)</td><td>3</td><td>3</td><td>6</td></tr>
-<tr><td>🧍 Berdiri</td><td>0,5</td><td>1</td><td>1</td></tr>
-<tr><td>💼 Bekerja ringan</td><td>8</td><td>0</td><td>0</td></tr>
-<tr><td>🔨 Bekerja sedang</td><td>0</td><td>8</td><td>0</td></tr>
-<tr><td>🧹 Tugas rumah tangga</td><td>1</td><td>1</td><td>5</td></tr>
-<tr><td>🚶 Berjalan</td><td>1</td><td>1</td><td>1</td></tr>
-<tr><td>🧘 Olahraga ringan</td><td>0,5</td><td>0</td><td>0,5</td></tr>
-<tr><th>Total diisi</th><th>23</th><th>23</th><th>22,5</th></tr>
-<tr><td>⏳ Lainnya (otomatis)</td><td>1</td><td>1</td><td>1,5</td></tr>
-</table></div>
-<div class="tip">Contoh nilai awal yang sudah terisi di aplikasi (tidur 7, kegiatan dasar 2, bekerja ringan 5, berdiri 2, berjalan 1, duduk 5, tugas rumah 1) hanyalah contoh. <b>Ganti sesuai pasien</b>, jangan dibiarkan default.</div>
-
-<h3>Cek jam Anda: pengecek 24 jam</h3>
-<p>Coba isi di sini sebelum memasukkan ke NutriKalk. Total tidak boleh melebihi 24 jam.</p>
-<div class="grid" id="chk" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))"></div>
-<div class="box" id="chkr" style="text-align:center;font-weight:700"></div>
-
-<h3>Kesalahan input yang sering terjadi</h3>
-<ul>
-<li>❌ Jam kerja diisi <b>dua kali</b>: Bekerja ringan 8 jam <i>dan</i> Duduk 8 jam. Padahal duduk di meja kerja sudah termasuk Bekerja ringan.</li>
-<li>❌ Memasukkan <b>total &gt;24 jam</b>. Aplikasi akan menghentikan perhitungan dan menampilkan kotak merah.</li>
-<li>❌ Mengisi “Olahraga berat” untuk seluruh jam di gym, padahal sebagian besar adalah istirahat antar-set (isi hanya jam latihan aktif).</li>
-<li>❌ Memakai kebiasaan “hari libur” atau “hari terbaik pasien”. Pakai <b>rata-rata hari biasa</b>.</li>
-<li>❌ Memasukkan jam tidur lebih panjang dari kenyataan (jam berbaring di tempat tidur ≠ jam tidur).</li>
-<li>✅ Bila ragu antara dua kategori, pilih yang <b>lebih rendah</b> agar tidak melebihi kebutuhan, lalu evaluasi berat badan pasien pada kontrol berikutnya.</li>
-</ul>
-<div class="info">Bila “Bekerja ringan” dan “Duduk” sama-sama terisi, aplikasi menampilkan catatan pengingat agar jam tidak tumpang tindih. Artinya perlu dicek ulang, bukan error.</div>
-<h3>Hasil yang muncul</h3>
-<div class="grid">
-<div class="box"><b>BMR/REE</b><br>Energi basal sesuai metode terpilih</div>
-<div class="box"><b>RMR</b><br>Harris-Benedict sebagai pembanding</div>
-<div class="box"><b>TEE</b><br>Total energi harian = jumlah (jam × pengali × BMR per jam)</div>
-<div class="box"><b>Tingkat aktivitas (PAL)</b><br>TEE ÷ 24 ÷ BMR per jam. ≤1,6 Ringan · ≤1,8 Sedang · &gt;1,8 Berat</div>
-</div>
-<div class="info">Jika memakai metode tabel dan BB di luar rentang tabel, atau BMR tabel berbeda &gt;15% dari Harris-Benedict, aplikasi menampilkan catatan peringatan.</div>
-</section>
-
-<section id="l3">
-<h2><span class="n">3</span>Kondisi Klinis &amp; Kebutuhan Nutrien</h2>
-<p class="sub">Pilih satu atau beberapa kondisi. Kolom laboratorium yang relevan muncul otomatis.</p>
-<p>Tanpa kondisi khusus (⚖️ <b>Gizi Seimbang</b>), pembagian makronutrien standar adalah:</p>
-<div class="bar"><div style="width:55%;background:#f59e0b">Karbohidrat 55%</div><div style="width:20%;background:#ef4444">Protein 20%</div><div style="width:25%;background:#3b82f6">Lemak 25%</div></div>
-<p>Lemak dirinci: SFA 7% · MUFA 10% · PUFA 8% dari kalori. Tombol <b>Gizi Seimbang</b> mengosongkan semua pilihan kondisi.</p>
-
-<div class="chips" id="tabs">
-<button class="on" data-t="ob">🏋️ Obesitas</button><button data-t="dm">🩸 DM</button><button data-t="dl">🧈 Dislipidemia</button><button data-t="ht">❤️ Hipertensi</button><button data-t="hu">🦶 Hiperurisemia</button><button data-t="an">🩹 Anemia</button><button data-t="ck">🫘 CKD</button>
-</div>
-
-<div class="tabp on" id="t-ob"><div class="box">
-<b>Yang diisi:</b> pilih defisit kalori 250 / 500 / 750 / 1000 kkal per hari.<br>
-<b>Yang dihitung:</b> target kalori = TEE − defisit, serta estimasi penurunan BB per minggu (7.700 kkal ≈ 1 kg, angka kasar).<br>
-<b>Peringatan otomatis:</b> target di bawah 1.500 kkal (pria) / 1.200 kkal (wanita), atau di bawah BMR.<br>
-<b>Efek ke perhitungan:</b> mengubah target energi.</div></div>
-
-<div class="tabp" id="t-dm"><div class="box">
-<b>Yang diisi:</b> HbA1c (%) <i>opsional</i>.<br>
-<b>Yang dihitung:</b> KH per waktu makan dari menu aktual (termasuk camilan, sayur &amp; buah), batas gula bebas &lt;10% energi, dan interpretasi HbA1c.<br>
-<b>Edukasi:</b> pilih KH berserat/IG rendah, hindari minuman manis, jadwal 3 makan utama + 2 selingan.</div></div>
-
-<div class="tabp" id="t-dl"><div class="box">
-<b>Yang diisi:</b> LDL dan trigliserida <i>opsional</i>.<br>
-<b>Yang dihitung:</b> rincian SFA/MUFA/PUFA dan klasifikasi LDL (ATP III) serta TG.<br>
-<b>Edukasi:</b> serat 25–30 g/hari, hindari lemak trans dan santan.</div></div>
-
-<div class="tabp" id="t-ht"><div class="box">
-<b>Yang diisi:</b> tekanan darah sistolik/diastolik <i>opsional</i>.<br>
-<b>Yang dihitung:</b> batas natrium &lt;2.000 mg/hari (garam &lt;5 g ≈ 1 sdt) dan kategori TD.<br>
-<b>Edukasi:</b> kurangi makanan olahan/asin, tingkatkan kalium, magnesium, kalsium.</div></div>
-
-<div class="tabp" id="t-hu"><div class="box">
-<b>Yang diisi:</b> asam urat (mg/dL) <i>opsional</i>.<br>
-<b>Yang dihitung:</b> batas gula bebas dan perbandingan dengan ambang (7 mg/dL pria, 6 mg/dL wanita).<br>
-<b>Edukasi:</b> batasi jeroan, sarden, kerang, emping, daging merah, minuman manis.</div></div>
-
-<div class="tabp" id="t-an"><div class="box">
-<b>Yang diisi:</b> hemoglobin (g/dL) <i>opsional</i>.<br>
-<b>Yang dihitung:</b> perbandingan dengan batas WHO (13 g/dL pria, 12 g/dL wanita).<br>
-<b>Catatan:</b> kebutuhan zat besi tidak dihitung otomatis; etiologi (mis. feritin) perlu dinilai terpisah.</div></div>
-
-<div class="tabp" id="t-ck"><div class="box">
-<b>Kondisi paling kompleks, mengubah target protein.</b>
-<ul>
-<li><b>Kreatinin serum</b> (wajib, 0,2–15 mg/dL) → eGFR CKD-EPI 2021 dan kategori G1–G5.</li>
-<li><b>Albuminuria</b> (A1/A2/A3), <b>penanda kerusakan ginjal lain</b>, dan <b>kronisitas ≥3 bulan</b>: dipakai untuk menentukan apakah kriteria CKD terpenuhi. Tanpa konfirmasi, hasil hanya <i>estimasi eGFR</i>, bukan diagnosis.</li>
-<li><b>Status dialisis:</b> HD/PD rutin memakai protein 1,1 g/kg.</li>
-<li><b>Strategi protein</b> (non-dialisis, eGFR &lt;60): 0,8 g/kg (standar KDIGO 2024) · 0,6 g/kg (diawasi ketat) · 0,3–0,4 g/kg + EAA/ketoanalog (pasien terpilih).</li>
-<li><b>BB untuk Cockcroft-Gault</b> dan <b>BB untuk target protein</b>: Otomatis / Aktual / Ideal / Adjusted. Pada edema/asites pilih BB kering secara manual.</li>
-</ul>
-<b>Hasil:</b> eGFR, CrCl Cockcroft-Gault (untuk dosis obat), kategori KDIGO, dan protein (g/kg × BB = g/hari).</div></div>
-
-<h3>Penyakit penyerta: cek konflik</h3>
-<p>Jika memilih dua kondisi atau lebih, muncul kotak merah <b>“periksa konflik rekomendasi”</b>, misalnya DM + CKD (KH besar vs protein rendah) atau Hipertensi + CKD (kalium). Rekomendasi <b>tidak digabung otomatis</b>: hanya Obesitas (energi) dan CKD (protein) yang mengubah target, sisanya berupa ambang dan edukasi.</p>
-<div class="warn">Panel hasil dibagi dua bagian: <b>📐 Dihitung dari data pasien</b> (individual) dan <b>📖 Edukasi umum</b> (tidak individual). Jangan tertukar saat menjelaskan ke pasien.</div>
-</section>
-
-<section id="l4">
-<h2><span class="n">4</span>Pembagian Porsi per Waktu Makan</h2>
-<p class="sub">Tabel otomatis membagi kalori harian ke lima waktu makan.</p>
-<div class="sc"><table>
-<tr><th>Waktu</th><th>Porsi</th></tr>
-<tr><td>🌅 Sarapan</td><td>25%</td></tr>
-<tr><td>🍎 Selingan 1</td><td>7,5%</td></tr>
-<tr><td>☀️ Makan siang</td><td>35%</td></tr>
-<tr><td>🥜 Selingan 2</td><td>7,5%</td></tr>
-<tr><td>🌙 Makan malam</td><td>25%</td></tr>
-</table></div>
-<p>Tabel menampilkan nilai <b>tercapai</b> (dari menu yang dipilih, termasuk camilan, sayur, dan buah) dibandingkan dengan <b>target harian</b>. Total harus mendekati target.</p>
-</section>
-
-<section id="l5">
-<h2><span class="n">5</span>Konversi ke Makanan</h2>
-<p class="sub">Mengubah gram protein, karbohidrat, dan lemak menjadi takaran sehari-hari.</p>
-<h3>Cara memakai kartu waktu makan</h3>
-<ol class="st">
-<li>Pilih <b>Karbohidrat</b> (nasi putih/merah, roti, oat, mie, jagung, makaroni).</li>
-<li>Pilih <b>Protein hewani</b> (ayam, sapi, telur, ikan, udang, dll.) dan <b>Protein nabati</b> (tempe, tahu, kacang-kacangan, susu kedelai, dll.).</li>
-<li>Geser slider <b>proporsi protein hewani</b> (0–100%). Sisanya otomatis dari nabati.</li>
-<li>Baca takaran di sisi kanan tiap baris (angka oranye, mis. “2 centong”, “1,5 potong”) dan <b>minyak tambahan</b> dalam sdt.</li>
-<li>Untuk <b>Selingan 1 &amp; 2</b>, pilih satu camilan: apel, pisang ambon, yogurt, puding chia, atau almond.</li>
-<li>Atur <b>jenis dan gram sayur &amp; buah</b> per hari di bagian bawah.</li>
-</ol>
-<h3>Algoritma: bukan sekadar kalori</h3>
-<div class="grid">
-<div class="box"><span class="ic">🍗</span><b>Lauk</b><br>dihitung dari target <b>gram protein</b>, setelah dikurangi protein dari sumber karbohidrat.</div>
-<div class="box"><span class="ic">🍚</span><b>Karbohidrat</b><br>dihitung dari sisa <b>gram KH</b> setelah dikurangi KH dari lauk.</div>
-<div class="box"><span class="ic">🫒</span><b>Minyak</b><br>hanya menambal <b>sisa lemak</b> setelah lemak dari semua makanan.</div>
-</div>
-<h3>Membaca kotak “Tercapai / target”</h3>
-<p>Setiap kartu menampilkan KH, protein, lemak, dan kalori yang tercapai dibanding target. Kotak berubah <b>oranye</b> bila selisih &gt;10% atau ada peringatan, misalnya:</p>
-<ul>
-<li>Bahan melebihi batas porsi wajar per waktu makan.</li>
-<li>Lemak dari makanan sudah melebihi target (minyak tambahan jadi 0).</li>
-<li>Protein dari sumber KH sudah melampaui target.</li>
-</ul>
-<div class="tip">Bila muncul <b>💡 Alternatif yang memenuhi target</b>, klik tombol <b>Terapkan</b> untuk memakai kombinasi bahan yang disarankan dengan perubahan minimal. Jika muncul ❌ “tidak ada kombinasi yang memenuhi”, turunkan target, ubah proporsi protein, atau sesuaikan secara klinis.</div>
-<div class="warn">Bila ada waktu makan yang tidak realistis, muncul peringatan di atas bagian sayur/buah: <b>jangan berikan rencana ini tanpa penyesuaian.</b></div>
-<h3>Sayur &amp; buah, serta batas harian</h3>
-<ul>
-<li>Anjuran total sayur + buah <b>400–600 g/hari</b> (di luar itu muncul tanda ⚠️). Kontribusi kalorinya sudah masuk hitungan.</li>
-<li>Pada CKD perhatikan kalium dari sayur &amp; buah.</li>
-<li>Kartu <b>Batas Harian Anjuran</b>: gula bebas &lt;10% energi, natrium &lt;2.000 mg, total lemak, dan SFA/MUFA/PUFA.</li>
-</ul>
-</section>
-
-<section id="output">
-<h2>📤 Cetak, PDF &amp; Kirim via WhatsApp</h2>
-<div class="grid">
-<div class="box"><span class="ic">🖨️</span><b>Cetak / Simpan PDF</b><br>Tombol oranye di bawah. Tampilan cetak otomatis menyembunyikan header dan tombol.</div>
-<div class="box"><span class="ic">💬</span><b>Rekap untuk WhatsApp</b><br>Menyusun teks siap kirim: data pasien, kebutuhan harian, menu &amp; takaran, sayur-buah, batas harian.</div>
-</div>
-<ol class="st">
-<li>Klik <b>💬 Rekap untuk WhatsApp</b>. Kotak teks muncul.</li>
-<li>Edit teks bila perlu (nama, catatan tambahan).</li>
-<li>Klik <b>📲 Kirim ke WhatsApp</b> atau <b>📋 Salin teks</b>.</li>
-</ol>
-<div class="warn">Jika rencana belum realistis, rekap otomatis diberi tulisan <b>“DRAFT”</b> di awal. Perbaiki dulu sebelum dikirim ke pasien.</div>
-</section>
-
-<section id="faq">
-<h2>❓ Tanya Jawab &amp; Tips</h2>
-<details><summary>Kenapa perhitungan tiba-tiba hilang dan muncul kotak merah?</summary><p>Ada input di luar batas valid (usia, BB, TB, total jam &gt;24, atau nilai lab tidak wajar). Perbaiki sesuai daftar di kotak merah.</p></details>
-<details><summary>Metode BMR mana yang sebaiknya dipakai?</summary><p>Mifflin-St Jeor (default). Metode tabel sumbernya belum tercantum, jadi gunakan sebagai pembanding saja.</p></details>
-<details><summary>Kenapa takaran makanan berubah saat saya ganti jenis lauk?</summary><p>Karena takaran dihitung dari kandungan protein, KH, dan lemak tiap bahan, bukan hanya kalori. Lauk berprotein berbeda menghasilkan gram berbeda.</p></details>
-<details><summary>Apakah saya bisa memilih lebih dari satu kondisi?</summary><p>Ya. Aplikasi menampilkan panel tiap kondisi dan daftar konflik antar-kondisi, tetapi tidak menggabungkan rekomendasi secara otomatis. Penyesuaian oleh dokter/ahli gizi tetap diperlukan.</p></details>
-<details><summary>Apakah data pasien tersimpan?</summary><p>Tidak. Segera setelah halaman ditutup atau dimuat ulang, semua data hilang. Simpan hasilnya sebagai PDF atau salin teks rekap jika perlu arsip.</p></details>
-<details><summary>Seberapa akurat data gizi makanannya?</summary><p>Nilai bahan adalah pendekatan (kelas USDA FDC / TKPI) dan <b>belum diverifikasi per item</b>. Energi dihitung 4/4/9 kkal per g P/KH/L. Buka bagian “Database bahan makanan” di bawah aplikasi untuk melihat semua nilai, dan cocokkan dengan TKPI 2017 sebelum dipakai untuk pasien.</p></details>
-<details><summary>Foto makanan tidak muncul, kenapa?</summary><p>Sebagian foto dimuat dari internet (Wikimedia). Tanpa koneksi, emoji ditampilkan sebagai gantinya; perhitungan tidak terpengaruh.</p></details>
-<h3>Alur kerja yang disarankan</h3>
-<ol class="st">
-<li>Isi data pasien dan aktivitas realistis.</li>
-<li>Pilih kondisi klinis dan isi data lab yang tersedia.</li>
-<li>Periksa panel konflik dan peringatan merah/oranye.</li>
-<li>Sesuaikan jenis makanan bersama pasien (sesuai selera dan budget).</li>
-<li>Pastikan semua kotak “tercapai / target” hijau, lalu cetak atau kirim rekap.</li>
-</ol>
-</section>
-
-<div class="cta"><h2>Siap dipakai? 🎉</h2><p>Buka NutriKalk dan coba dengan data pasien contoh.</p><button class="btn" onclick="print()">🖨️ Cetak panduan ini</button></div>
-<p class="disc">NutriKalk adalah alat bantu hitung untuk tenaga kesehatan, bukan pengganti penilaian klinis.</p>
+<details class="card"><summary style="cursor:pointer;font-weight:700;color:var(--g)">📚 Database bahan makanan (sumber &amp; status verifikasi)</summary><div class="sc" id="dbt" style="margin-top:10px"></div></details>
+<p class="disc">Energi tiap bahan dihitung konsisten dari makronutriennya (4/4/9 kkal per g P/KH/L) per 100 g bagian yang dapat dimakan dengan status tercantum. NutriKalk adalah alat bantu hitung untuk tenaga kesehatan, bukan pengganti penilaian klinis. Nilai gizi makanan di database adalah pendekatan (bahan matang/kering tercantum per item) — cocokkan dengan TKPI 2017 sebelum dipakai untuk pasien. Data pasien tidak disimpan oleh aplikasi.</p>
 </main>
 <script>
-const ACT=[['😴 Tidur',7],['🚿 Kegiatan dasar',2],['🪑 Duduk',5],['🧍 Berdiri',2],['💼 Bekerja ringan',5],['🔨 Bekerja sedang',0],['🏗️ Bekerja berat',0],['🧹 Tugas rumah',1],['🚶 Berjalan',1],['🧘 Olahraga ringan',0],['🏃 Olahraga sedang',0],['🏋️ Olahraga berat',0]];
-const ck=document.getElementById('chk');
-ck.innerHTML=ACT.map((a,i)=>`<label style="font-size:13px">${a[0]}<input type="number" min="0" max="24" step="0.5" value="${a[1]}" data-i="${i}" style="width:100%;padding:7px;border:1.5px solid var(--l);border-radius:9px;background:var(--c);color:var(--t)"></label>`).join('');
-function chkUpd(){let t=0;ck.querySelectorAll('input').forEach(i=>t+=+i.value||0);const r=document.getElementById('chkr'),sisa=24-t;
- const ov=(+ck.querySelector('[data-i="4"]').value>0&&+ck.querySelector('[data-i="2"]').value>0);
- r.style.background=t>24?'#fee2e2':'var(--bg)';r.style.color=t>24?'#991b1b':'var(--t)';
- r.innerHTML=t>24?`⛔ Total ${t} jam melebihi 24 jam. Kurangi ${(t-24)} jam.`:`✅ Total diisi ${t} jam · Lainnya otomatis ${sisa} jam`+(ov?'<br><small>ℹ️ “Bekerja ringan” dan “Duduk” sama-sama terisi: pastikan jam tidak tumpang tindih.</small>':'')}
-ck.addEventListener('input',chkUpd);chkUpd();
-const pg=document.getElementById('pg');
-const links=[...document.querySelectorAll('#nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
-addEventListener('scroll',()=>{
- const h=document.documentElement;pg.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
- let cur=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<120)cur=i});
- links.forEach((a,i)=>a.classList.toggle('on',i==cur));
-});
-document.getElementById('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;
- document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x==b));
- document.querySelectorAll('.tabp').forEach(p=>p.classList.toggle('on',p.id=='t-'+b.dataset.t))};
+const IMG={nasi:'data:image/jpeg;base64,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',ayam:'data:image/jpeg;base64,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',tempe:'data:image/jpeg;base64,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',minyak:'data:image/jpeg;base64,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',sapi:'data:image/jpeg;base64,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',apel:'data:image/jpeg;base64,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',pisang:'data:image/jpeg;base64,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',yogurt:'data:image/jpeg;base64,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',chia:'data:image/jpeg;base64,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',almond:'data:image/jpeg;base64,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'};
+const $=id=>document.getElementById(id),f1=(x,d=1)=>(+x).toLocaleString('id-ID',{maximumFractionDigits:d,minimumFractionDigits:d}),n=id=>{const s=$(id).value;return s===''?NaN:+s};
+let sex='P';
+const REF_BMR=''; // ISI: sumber ilmiah tabel faktor BMR di bawah (mis. buku/pedoman rujukan)
+const T={P:{a:[[50,29],[55,27.5],[60,26.5],[65,26],[70,25],[75,24.5],[80,24]],b:[[50,29],[55,27.5],[60,26],[65,25],[70,24],[75,23.5],[80,22.5]],c:[[50,23],[55,22.5],[60,21.5],[65,21],[70,20.5],[75,20],[80,19.5]]},
+W:{a:[[40,27],[45,25.5],[50,24.5],[55,23.5],[60,23],[65,22.5],[70,22],[75,21.5]],b:[[40,29.5],[45,27.5],[50,25.5],[55,24],[60,22.5],[65,21.5],[70,20.5],[75,20]],c:[[40,25.5],[45,23.5],[50,22.5],[55,21.5],[60,20.5],[65,19.5],[70,19],[75,18.5]]}};
+const tbl=a=>T[sex][a<=30?'a':a<60?'b':'c'];
+function factor(a,w){const t=tbl(a);if(w<=t[0][0])return t[0][1];for(let i=1;i<t.length;i++)if(w<=t[i][0]){const[x0,y0]=t[i-1],[x1,y1]=t[i];return y0+(y1-y0)*(w-x0)/(x1-x0)}return t[t.length-1][1]}
+const ACT=[['😴 Tidur',1,7],['🚿 Kegiatan dasar',1.4,2],['💼 Bekerja ringan',1.7,5],['🔨 Bekerja sedang',2.2,0],['🏗️ Bekerja berat',2.8,0],['🧍 Berdiri',1.5,2],['🚶 Berjalan',3.4,1],['🪑 Duduk',1.4,5],['🧹 Tugas rumah tangga',2.5,1],['🧘 Olahraga ringan',3.1,0],['🏃 Olahraga sedang',5.2,0],['🏋️ Olahraga berat',6.3,0]];
+$('act').innerHTML=ACT.map((a,i)=>`<div><span>${a[0]} <small class="note">×${a[1]}</small></span><input type="number" min="0" max="24" step="0.5" id="a${i}" value="${a[2]}"></div>`).join('')+`<div><span>⏳ Lainnya <small class="note">×1,4 (otomatis)</small></span><input id="aL" readonly></div>`;
+const MEALS=[['🌅 Sarapan',.25],['🍎 Selingan 1',.075],['☀️ Makan Siang',.35],['🥜 Selingan 2',.075],['🌙 Makan Malam',.25]];
+// [nama,emoji,kkal,protein,KH,lemak (per 100 g),satuan,gram/satuan,file wiki,status]  — nilai pendekatan, verifikasi dengan TKPI 2017
+const KH=[['Nasi putih','🍚',130,2.7,28.2,.3,'centong',100,'Steamed_rice.jpg','matang'],['Nasi merah','🍛',123,2.7,25.6,1,'centong',100,'Brown_rice.jpg','matang'],['Roti tawar','🍞',266,8.9,49,3.3,'potong',30,'White_bread.jpg','roti'],['Oat / havermout','🥣',379,13.2,67.7,6.5,'sdm',10,'Oatmeal.jpg','kering'],['Mie kering','🍜',350,11,72,1.5,'porsi (50 g)',50,'Noodles.jpg','kering'],['Jagung rebus','🌽',96,3.4,21,1.5,'porsi (100 g)',100,'Corn.jpg','matang'],['Makaroni','🍝',371,13,75,1.5,'porsi (50 g)',50,'Macaroni.jpg','kering']];
+const HW=[['Ayam (dada tanpa kulit)','🍗',165,31,0,3.6,'potong',55,'Fried_chicken.jpg','matang'],['Daging sapi tdk berlemak','🥩',180,27,0,7.5,'potong',55,'Beef.jpg','matang'],['Daging sapi berlemak','🥩',280,24,0,20,'potong',55,'Beef.jpg','matang'],['Telur ayam','🥚',143,12.6,.7,9.5,'butir',50,'Chicken_egg.jpg','utuh'],['Telur bebek','🥚',185,12.8,1.5,13.8,'butir',65,'Duck_egg.jpg','utuh'],['Ikan bandeng','🐟',148,20.5,0,6.7,'potong',50,'Milkfish.jpg','segar'],['Ikan bawal','🐟',110,19,0,3.5,'potong',50,'Pomfret.jpg','segar'],['Ikan kakap','🐟',100,20.5,0,1.3,'potong',50,'Snapper.jpg','segar'],['Ikan kembung','🐟',110,21,0,2.5,'ekor besar',100,'Mackerel.jpg','segar'],['Ikan lele','🐟',95,16.4,0,2.8,'ekor sedang',50,'Catfish.jpg','segar'],['Udang','🦐',85,20,.2,.5,'5 ekor sedang',50,'Shrimp.jpg','segar'],['Kepiting','🦀',87,18,0,1.1,'porsi (100 g)',100,'Crab.jpg','segar'],['Bebek','🦆',200,24,0,11,'potong',55,'Roast_duck.jpg','matang'],['Kambing','🐐',143,27,0,3,'potong',55,'Goat_meat.jpg','matang']];
+const NB=[['Tempe','🟫',192,20.3,7.6,10.8,'potong besar',50,'Tempeh.jpg','segar'],['Tahu','⬜',76,8.1,1.9,4.8,'potong besar',50,'Tofu.jpg','segar'],['Kacang kedelai rebus','🫘',173,16.6,9.9,9,'sdm',15,'Soybean.jpg','rebus'],['Kacang hijau rebus','🫛',105,7,19.2,.4,'sdm',15,'Mung_bean.jpg','rebus'],['Kacang merah rebus','🫘',127,8.7,22.8,.5,'sdm',15,'Kidney_beans.jpg','rebus'],['Kacang tanah rebus','🥜',318,13.5,21.5,21.3,'sdm',15,'Peanuts.jpg','rebus'],['Oncom','🟧',187,13,22.6,6,'potong',50,'Oncom.jpg','segar'],['Susu kedelai','🥛',54,3.3,6.3,1.8,'gelas (200 ml)',200,'Soy_milk.jpg','cair']];
+const SN=[['Buah apel','🍎',0,'buah',150,'apel',.3,13.8,.2],['Pisang ambon','🍌',0,'buah',50,'pisang',1.1,22.8,.3],['Yogurt plain rendah lemak','🥛',0,'cup',150,'yogurt',5.3,7,1.6],['Puding chia seed','🍮',0,'cup',150,'chia',3.5,9.5,5.7],['Kacang almond','🌰',0,'porsi 20 g (±15 butir)',20,'almond',21.2,21.6,49.9]];
+const VG=[['Sayur campur (perkiraan)','🥗',0,2,6,.3],['Bayam','🥬',0,2.9,3.6,.4],['Kangkung','🥬',0,2.6,3.1,.2],['Wortel','🥕',0,.9,9.6,.2],['Brokoli','🥦',0,2.8,6.6,.4],['Sawi hijau / pakcoy','🥬',0,1.5,2.2,.2],['Buncis','🫛',0,1.8,7,.2],['Labu siam','🥒',0,.8,4.5,.1],['Kol','🥬',0,1.3,5.8,.1]].map(x=>[...x,'g',100,'','segar/matang']);
+const FR=[['Buah campur (perkiraan)','🍇',0,.7,12.5,.3],['Pepaya','🍈',0,.5,10.8,.3],['Pisang ambon','🍌',0,1.1,22.8,.3],['Apel','🍎',0,.3,13.8,.2],['Jeruk','🍊',0,.9,11.8,.1],['Semangka','🍉',0,.6,7.6,.2]].map(x=>[...x,'g',100,'','segar']);
+[KH,HW,NB,VG,FR].forEach(a=>a.forEach(x=>x[2]=4*x[3]+4*x[4]+9*x[5]));
+$('svt').innerHTML=VG.map((x,i)=>`<option value="${i}">${x[1]} ${x[0]}</option>`).join('');$('bht').innerHTML=FR.map((x,i)=>`<option value="${i}">${x[1]} ${x[0]}</option>`).join('');
+const DB_SRC='Pendekatan (kelas USDA FDC / TKPI) — BELUM diverifikasi per item',DB_VER='';SN.forEach(o=>o[2]=4*o[6]+4*o[7]+9*o[8]);
+const IMK={'Nasi putih':'nasi','Ayam (dada tanpa kulit)':'ayam','Tempe':'tempe','Daging sapi tdk berlemak':'sapi','Daging sapi berlemak':'sapi'};
+const imgTag=k=>`<div class="pic"><img src="${IMG[k]}" alt="" style="position:static"></div>`;
+const sel=(arr,id,v)=>`<select class="ms" id="${id}" onchange="conv()">${arr.map((x,i)=>`<option value="${i}" ${i==v?'selected':''}>${x[1]} ${x[0]}</option>`).join('')}</select>`;
+$('meals').innerHTML=MEALS.map((m,i)=>i==1||i==3?`<div class="meal"><h3><span>${m[0]}</span><span id="mk${i}"></span></h3><div class="in"><div class="row"><div class="pic">🎯</div><div class="f"><b>Target kalori selingan</b><small>Pilih camilan sehat sesuai kalori ini</small></div><div class="amt" id="sk${i}"></div></div><label>Pilihan camilan sehat</label><div id="so${i}"></div></div></div>`:`<div class="meal"><h3><span>${m[0]}</span><span id="mk${i}"></span></h3><div class="in">
+<label>Karbohidrat</label>${sel(KH,'kh'+i,0)}<div class="row" id="rk${i}"></div>
+<label>Protein hewani</label>${sel(HW,'hw'+i,i==2?1:0)}<div class="row" id="rh${i}"></div>
+<label>Protein nabati</label>${sel(NB,'nb'+i,0)}<div class="row" id="rn${i}"></div>
+<label>Proporsi protein hewani: <b id="pv${i}">50</b>%</label><input type="range" id="pp${i}" min="0" max="100" step="10" value="50" oninput="conv()">
+<div class="row" id="rl${i}"></div><div class="chk" id="ck${i}"></div></div></div>`).join('');
+function pic(x){if(IMK[x[0]])return imgTag(IMK[x[0]]);return `<div class="pic">${x[1]}<img src="https://commons.wikimedia.org/wiki/Special:FilePath/${x[8]}?width=160" loading="lazy" alt="" onerror="this.remove()"></div>`}
+const li=a=>'<ul>'+a.map(x=>`<li>${x}</li>`).join('')+'</ul>';
+let R={},S={},PL={};
+function showErr(e){const b=$('err');b.style.display=e.length?'block':'none';b.innerHTML=e.length?'<b>⛔ Perhitungan dihentikan — perbaiki input berikut:</b><ul>'+e.map(x=>`<li>${x}</li>`).join('')+'</ul>':''}
+function flag(v,rules){for(const[t,s]of rules)if(v>=t)return s;return rules[rules.length-1][1]}
+function calc(){
+ const CSa=[...CS],has=k=>CS.has(k),c=CSa.join('+')||'n',bmM=$('bm').value,age=n('age'),bb=n('bb'),tb=n('tb'),err=[];
+ document.querySelectorAll('.lab').forEach(e=>e.style.display=has(e.dataset.f)?'block':'none');$('fkw').style.display=bmM=='tb'?'block':'none';
+ if(!(age>=18&&age<=110))err.push('Usia harus 18–110 tahun (aplikasi ini untuk dewasa; untuk anak gunakan kalkulator WHO).');
+ if(!(bb>=20&&bb<=300))err.push('Berat badan harus 20–300 kg.');
+ if(!(tb>=100&&tb<=230))err.push('Tinggi badan harus 100–230 cm.');
+ let tot=0;const hr=ACT.map((a,i)=>{const h=n('a'+i),v=isNaN(h)?0:h;if(v<0||v>24)err.push(`Durasi “${a[0]}” harus 0–24 jam.`);tot+=v;return v});
+ if(tot>24.0001)err.push(`Total durasi aktivitas ${f1(tot,1)} jam melebihi 24 jam.`);
+ $('aL').value=f1(Math.max(24-tot,0),1);
+ const fkm=n('fk');if(bmM=='tb'&&!isNaN(fkm)&&(fkm<15||fkm>40))err.push('Faktor BMR manual harus 15–40 kkal/kg/hari.');
+ const cr=n('cr');if(has('ck')&&!(cr>=.2&&cr<=15))err.push('Kreatinin serum harus 0,2–15 mg/dL.');
+ [['hba',3,20,'HbA1c (3–20 %)'],['sbp',60,260,'TD sistolik (60–260 mmHg)'],['dbp',30,150,'TD diastolik (30–150 mmHg)'],['ldl',20,500,'LDL (20–500 mg/dL)'],['tg',20,3000,'Trigliserida (20–3000 mg/dL)'],['ua',1,20,'Asam urat (1–20 mg/dL)'],['hb',3,22,'Hb (3–22 g/dL)']].forEach(([id,a,b,l])=>{const v=n(id);if(!isNaN(v)&&has($(id).closest('.lab').dataset.f)&&(v<a||v>b))err.push(l+': nilai di luar rentang wajar.')});
+ ['sy','bh'].forEach(id=>{const v=n(id);if(!isNaN(v)&&(v<0||v>2000))err.push('Sayur/buah harus 0–2000 g/hari.')});
+ showErr(err);
+ if(err.length){R={};['imt','tee','nut','pnl'].forEach(i=>$(i).innerHTML='');$('res').style.display='none';return}
+ $('res').style.display='block';
+ const imt=bb/((tb/100)**2),st=imt<18.5?['Underweight','#3b82f6']:imt<23?['Normal','#16a34a']:imt<25?['Overweight','#f59e0b']:imt<30?['Obesitas I','#ea580c']:['Obesitas II','#dc2626'];
+ $('imt').innerHTML=`<div class="k"><b>${f1(imt)}</b><span>IMT (kg/m²)</span></div><div class="k"><span class="badge" style="background:${st[1]}">${st[0]}</span><br><span>WHO Asia Pasifik</span></div><div class="k"><b>${f1(22.9*(tb/100)**2,0)} kg</b><span>BB maksimal normal (IMT 22,9)</span></div>`;
+ const rmr=sex=='P'?66.5+13.7*bb+5*tb-6.8*age:655.1+9.56*bb+1.85*tb-4.7*age,ms=10*bb+6.25*tb-5*age+(sex=='P'?5:-161);
+ const fk=isNaN(fkm)?factor(age,bb):fkm,bmrD=bmM=='ms'?ms:bmM=='hb'?rmr:bb*fk,bmrH=bmrD/24;
+ const rest=24-tot;let tee=rest*1.4*bmrH;ACT.forEach((a,i)=>tee+=hr[i]*a[1]*bmrH);
+ const pal=tee/24/bmrH,lv=pal<=1.6?'Ringan':pal<=1.8?'Sedang':'Berat',t=tbl(age),wr=[t[0][0],t[t.length-1][0]];
+ let tn=(hr[2]>0&&hr[7]>0)?'<div class="tip" style="grid-column:1/-1">ℹ️ “Bekerja ringan” dan “Duduk” sama-sama terisi — pastikan jam tidak tumpang tindih (jam yang sama dihitung dua kali).</div>':'';if(bmM=='tb'&&isNaN(fkm)&&(bb<wr[0]||bb>wr[1]))tn+=`<div class="tip" style="grid-column:1/-1">⚠️ BB ${f1(bb,1)} kg di luar rentang tabel (${wr[0]}–${wr[1]} kg); faktor memakai nilai batas tabel. Isi faktor manual atau bandingkan dengan RMR.</div>`;
+ if(bmM=='tb'&&Math.abs(bmrD-rmr)/rmr>.15)tn+=`<div class="tip" style="grid-column:1/-1">ℹ️ BMR tabel berbeda &gt;15% dari RMR Harris-Benedict (${f1(rmr,0)} kkal). TEE dihitung dari BMR tabel; pertimbangkan validasi klinis.</div>`;
+ $('tee').innerHTML=`<div class="k"><b>${f1(bmrD,0)}</b><span>BMR/REE kkal/hari (${bmM=='ms'?'Mifflin-St Jeor':bmM=='hb'?'Harris-Benedict':'tabel'})</span></div><div class="k"><b>${f1(rmr,0)}</b><span>RMR (Harris-Benedict)</span></div><div class="k"><b>${f1(tee,0)}</b><span>TEE kkal/hari</span></div><div class="k"><b>${f1(pal,2)}</b><span>Tingkat aktivitas (${lv})</span></div>`+tn;
+ $('fkn').innerHTML=bmM=='ms'?'Mifflin-St Jeor: REE = 10×BB + 6,25×TB − 5×usia + 5 (pria) / −161 (wanita) (Mifflin dkk., Am J Clin Nutr 1990). Faktor aktivitas per jam menyerupai nilai PAR FAO/WHO/UNU — verifikasi dengan referensi Anda.':bmM=='hb'?'Harris-Benedict (koefisien 1919) dipakai sebagai BMR; cenderung lebih tinggi dari pengukuran modern.':`Tabel untuk usia ${age} th, BB ${f1(bb,1)} kg: ${f1(factor(age,bb),2)} kkal/kg/hari (interpolasi). `+(REF_BMR?`Sumber: ${REF_BMR}.`:'<b>Sumber tabel belum tercantum — gunakan hanya sebagai pembanding sampai tervalidasi.</b>');
+ let kcal=tee,pP=.2,pL=.25,extra='',warn='',ck=null,def=0;
+ if(has('ob')){def=+$('def').value;kcal=tee-def;const mn=sex=='P'?1500:1200;if(kcal<mn)warn+=`<div class="warn">⚠️ Target ${f1(kcal,0)} kkal di bawah ${mn} kkal/hari (batas umum tanpa pengawasan) — kurangi defisit atau awasi ketat.</div>`;if(kcal<bmrD)warn+=`<div class="warn">⚠️ Target di bawah BMR (${f1(bmrD,0)} kkal).</div>`}
+ if(has('ck')){const k=sex=='P'?.9:.7,a=sex=='P'?-.302:-.241;
+  const egfr=142*Math.pow(Math.min(cr/k,1),a)*Math.pow(Math.max(cr/k,1),-1.2)*Math.pow(.9938,age)*(sex=='W'?1.012:1);
+  const ibw=Math.max((sex=='P'?50:45.5)+2.3*(tb/2.54-60),30),adj=ibw+.4*(bb-ibw);let m=$('cgw').value;
+  if(m=='auto')m=bb<ibw?'akt':bb<=1.2*ibw?'ibw':'adj';const w=m=='akt'?bb:m=='ibw'?ibw:adj;
+  const cg=(140-age)*w/(72*cr)*(sex=='W'?.85:1);
+  const g=egfr>=90?'G1':egfr>=60?'G2':egfr>=45?'G3a':egfr>=30?'G3b':egfr>=15?'G4':'G5';
+  const dz=$('dlz').value=='1',alb=$('alb').value,chr=$('chr').checked,ev=alb=='A2'||alb=='A3'||$('mrk').checked,ok=chr&&(egfr<60||ev);
+  let pm=$('pbw').value;if(pm=='auto')pm=imt<25?'akt':'adj';const wp=pm=='akt'?bb:pm=='ibw'?ibw:adj;
+  const gk=dz?1.1:egfr<60?+$('pst').value:.8;
+  pP=gk*wp*4/kcal;ck={egfr,cg,g,w,m,gk,dz,ibw,alb,chr,ev,ok,wp,pm};
+  if(pP+pL>.8){err.push('Target protein CKD terlalu tinggi terhadap kalori; periksa input.');showErr(err);return}}
+ const pK=1-pP-pL,m={p:kcal*pP,l:kcal*pL,k:kcal*pK};R={kcal,m};S={imt,st:st[0],tee,c,cs:CSa,bb,tb,age,pP,pL,pK,ck,def,bmrD};
+ $('pnl').innerHTML=CSa.map(k=>panel(k,kcal,tee,m,ck)).join('')+conflicts(CSa)+warn;
+ $('nut').innerHTML=`<div class="kpi"><div class="k"><b>${f1(kcal,0)}</b><span>Kalori target/hari</span></div><div class="k"><b>${f1(m.k/4,0)} g</b><span>Karbohidrat ${f1(pK*100,0)}% · ${f1(m.k,0)} kkal</span></div><div class="k"><b>${f1(m.p/4,0)} g</b><span>Protein ${f1(pP*100,0)}% · ${f1(m.p,0)} kkal${ck?' ('+f1(ck.gk,2)+' g/kg)':''}</span></div><div class="k"><b>${f1(m.l/9,0)} g</b><span>Lemak ${f1(pL*100,0)}% · ${f1(m.l,0)} kkal</span></div></div>
+ <div class="bar"><div style="width:${pK*100}%;background:#f59e0b">KH ${f1(pK*100,0)}%</div><div style="width:${pP*100}%;background:#ef4444">P ${f1(pP*100,0)}%</div><div style="width:${pL*100}%;background:#3b82f6">L ${f1(pL*100,0)}%</div></div>
+ <p class="note">Lemak: SFA 7% = ${f1(kcal*.07/9,0)} g · MUFA 10% = ${f1(kcal*.10/9,0)} g · PUFA 8% = ${f1(kcal*.08/9,0)} g (acuan umum, bukan komposisi wajib untuk semua pasien; sesuaikan secara klinis)</p>`;
+  conv()}
+const CF={'ob+dm':'Defisit kalori + diet DM: pantau risiko hipoglikemia bila memakai insulin/sulfonilurea.','ob+hu':'Penurunan BB sangat cepat/puasa dapat menaikkan asam urat sementara.','ob+ck':'Defisit kalori pada CKD berisiko menurunkan asupan energi/protein (malnutrisi, sarkopenia); pantau status gizi.','dm+dl':'Membatasi KH (DM) jangan diganti lemak jenuh; utamakan MUFA/PUFA &amp; serat.','dm+ck':'Protein rendah CKD membuat porsi KH besar (persentase KH naik) — bertentangan dengan kendali glikemik DM; pilih KH berserat/IG rendah, pantau glukosa; target protein DM-CKD perlu penyesuaian klinis.','dl+hu':'Ikan berlemak dianjurkan untuk lipid tetapi sebagian (sarden) tinggi purin; pilih ikan purin sedang.','dl+ck':'Sumber lemak sehat (ikan, kacang, alpukat) dapat tinggi protein/fosfor/kalium; sesuaikan dengan laboratorium CKD.','ht+ck':'Anjuran HT tinggi kalium (pisang, sayur hijau, kacang) bertentangan dengan pembatasan kalium CKD bila K serum tinggi (sayur &amp; buah di langkah 5 juga memuat kalium); natrium &lt;2 g selaras.','hu+an':'Sumber besi heme (hati, daging merah) tinggi purin — bertentangan dengan diet rendah purin; pertimbangkan telur, susu, kacang + vitamin C.','hu+ck':'Pembatasan purin selaras dengan protein rendah, tetapi pastikan asupan energi/protein cukup dan tinjau anjuran minum air pada CKD berat.','an+ck':'Sumber zat besi (daging, hati, kacang) tinggi protein/fosfor/kalium; anemia CKD umumnya perlu terapi (besi/ESA), bukan hanya diet.'};
+function conflicts(a){if(a.length<2)return '';const o=['ob','dm','dl','ht','hu','an','ck'],s=o.filter(x=>a.includes(x)),L=[];for(let i=0;i<s.length;i++)for(let j=i+1;j<s.length;j++){const k=s[i]+'+'+s[j];if(CF[k])L.push(CF[k])}
+ return `<div class="pn" style="border-color:#dc2626"><h3>⚠️ Penyakit penyerta — periksa konflik rekomendasi</h3>${L.length?li(L):''}<p class="note">Rekomendasi tiap kondisi <b>tidak digabung otomatis</b>. Hanya Obesitas (defisit kalori) dan CKD (protein) yang mengubah target energi/makro; kondisi lain berupa ambang &amp; edukasi. Penyesuaian oleh dokter/ahli gizi diperlukan.</p></div>`}
+function panel(c,kcal,tee,m,ck){
+ if(c=='n')return '';
+ const sg=kcal*.1/4,lem=`SFA &lt;7% = ${f1(kcal*.07/9,0)} g · MUFA 10% = ${f1(kcal*.10/9,0)} g · PUFA 8% = ${f1(kcal*.08/9,0)} g`;
+ const kh=MEALS.map((x,i)=>i==1||i==3?'':`${x[0]}: <b>${f1(m.k*x[1]/4,0)} g</b>`).filter(Boolean).join(' · ');
+ const H=(t,calcH,edu)=>`<div class="pn"><h3>${t}</h3><div class="sec">📐 Dihitung dari data pasien</div>${calcH}<div class="sec edu">📖 Edukasi umum (tidak individual)</div>${edu}</div>`;
+ const hba=n('hba'),sbp=n('sbp'),dbp=n('dbp'),ldl=n('ldl'),tg=n('tg'),ua=n('ua'),hb=n('hb');
+ const nl=(v,u)=>isNaN(v)?'':`${f1(v,1)} ${u}`;
+ if(c=='ob'){const wk=S.def?0:0,d=+$('def').value;return H('🏋️ Obesitas',`<div class="kpi"><div class="k"><b>${f1(tee,0)}</b><span>TEE</span></div><div class="k"><b>${f1(kcal,0)}</b><span>Target asupan (TEE − ${d})</span></div><div class="k"><b>${f1(d*7/7700,2)} kg</b><span>Estimasi penurunan BB/minggu (7.700 kkal/kg; kasar)</span></div></div><p class="note">${lem}</p>`,li(['Penurunan 0,25–1 kg/minggu realistis; estimasi 7.700 kkal/kg cenderung melebihi hasil nyata karena adaptasi metabolik.','Pertahankan protein cukup &amp; aktivitas fisik untuk menjaga massa otot.']))}
+ if(c=='dm'){return H('🩸 Diabetes Melitus',`<p><b>KH per waktu makan (dari menu aktual, termasuk camilan, sayur &amp; buah):</b> <span id="dmkh"></span></p><p>Gula bebas: &lt;${f1(sg,0)} g/hari (10% energi, batas WHO; target individual dapat lebih rendah)</p>${isNaN(hba)?'':`<p>HbA1c ${f1(hba,1)}% → ${hba<5.7?'normal':hba<6.5?'rentang prediabetes':hba<9?'rentang diabetes (target individual, umumnya &lt;7%)':'kendali glikemik buruk — evaluasi terapi'}. Bukan diagnosis tunggal (perlu konfirmasi &amp; konteks klinis); target glikemik bersifat individual.</p>`}<p class="note">${lem}</p>`,li(['Pilih karbohidrat IG rendah &amp; berserat (nasi merah, oat, ubi, jagung); hindari minuman manis.','Jadwal makan teratur: 3 makan utama + 2 selingan.']))}
+ if(c=='dl'){return H('🧈 Dislipidemia',`<p>${lem}</p>${isNaN(ldl)?'':`<p>LDL ${f1(ldl,0)} mg/dL → ${flag(ldl,[[190,'sangat tinggi'],[160,'tinggi'],[130,'borderline tinggi'],[100,'mendekati optimal'],[0,'optimal']])} (klasifikasi ATP III).</p>`}${isNaN(tg)?'':`<p>TG ${f1(tg,0)} mg/dL → ${flag(tg,[[500,'sangat tinggi — risiko pankreatitis, batasi lemak &amp; gula, pertimbangkan rujukan'],[200,'tinggi'],[150,'borderline tinggi'],[0,'normal']])}.</p>`}`,li(['Serat 25–30 g/hari (sayur, buah, oat, kacang-kacangan).','Hindari lemak trans (gorengan, kue, mentega) &amp; santan; utamakan ikan, alpukat, minyak zaitun/canola.']))}
+ if(c=='ht'){return H('❤️ Hipertensi',`<p>Natrium &lt;2.000 mg/hari (≈ garam &lt;5 g ≈ 1 sdt) — WHO.</p>${isNaN(sbp)||isNaN(dbp)?'':`<p>TD ${f1(sbp,0)}/${f1(dbp,0)} mmHg → ${sbp>=140||dbp>=90?'≥140/90 mmHg':sbp>=130||dbp>=80?'≥130/80 mmHg':'di bawah 130/80 mmHg'}. Bukan diagnosis definitif — perlu pengukuran berulang.</p>`}`,li(['Kurangi makanan olahan, asin &amp; awetan.','Tingkatkan serat, kalium (pisang, sayur hijau, ubi), magnesium, dan kalsium (susu rendah lemak, tempe/tahu).']))}
+ if(c=='hu'){const th=sex=='P'?7:6;return H('🦶 Hiperurisemia',`<p>Gula bebas &lt;${f1(sg,0)} g/hari (batas umum). Fruktosa (sirup, minuman manis, jus) perlu dibatasi terpisah — tidak dihitung otomatis.</p>${isNaN(ua)?'':`<p>Asam urat ${f1(ua,1)} mg/dL → ${ua>th?'di atas':'dalam'} batas ${th} mg/dL.</p>`}`,li(['Batasi jeroan, sarden, kerang, emping, daging merah; kurangi minuman manis &amp; sirup.','Cukup minum air putih bila tidak ada kontraindikasi.']))}
+ if(c=='an'){const th=sex=='P'?13:12;return H('🩹 Anemia',isNaN(hb)?'<p class="note">Masukkan Hb untuk interpretasi. Kebutuhan zat besi tidak dihitung otomatis.</p>':`<p>Hb ${f1(hb,1)} g/dL → ${hb<th?'di bawah':'dalam'} batas ${th} g/dL (WHO, dewasa tidak hamil). Etiologi (mis. feritin) perlu dinilai terpisah.</p>`,li(['Utamakan zat besi heme (hati, daging, ikan, telur) + vitamin C.','Hindari teh/kopi saat makan.']))}
+ if(c=='ck'){const x=ck,pn=x.pm=='akt'?'aktual':x.pm=='ibw'?'ideal':'adjusted';
+  const stage=x.ok?`${x.g}${x.alb?' '+x.alb:''}`:'—';
+  const msg=!x.chr?'Kronisitas (≥3 bulan) belum dikonfirmasi: ini hanya <b>estimasi eGFR</b>, bukan diagnosis CKD.':(x.egfr>=60&&!x.ev)?'eGFR ≥60 <b>tanpa penanda kerusakan ginjal</b> (albuminuria A2–A3, kelainan sedimen/struktural/histologi) tidak memenuhi kriteria CKD; kategori G1–G2 tidak ditampilkan.':'';
+  const ctx=x.dz?'Dialisis: 1,0–1,2 g/kg (dipakai 1,1); sesuaikan dengan ahli gizi renal.':x.egfr<60?(x.gk>=.75?'Non-dialisis G3–G5: ±0,8 g/kg (KDIGO 2024); hindari &gt;1,3 g/kg.':x.gk>=.55?'0,6 g/kg: hanya non-dialisis dengan kondisi metabolik stabil, dengan supervisi ahli gizi/nefrologi; pantau BB, albumin &amp; asupan energi; hindari pada malnutrisi/risiko malnutrisi.':'0,3–0,4 g/kg: bukan untuk penggunaan umum; wajib dengan suplementasi asam amino esensial/ketoanalog dan pengawasan ketat; tidak untuk lansia rapuh, malnutrisi, hamil.'):'eGFR ≥60: protein umum 0,8 g/kg; hindari &gt;1,3 g/kg bila berisiko progresif.';
+  return H('🫘 CKD',`<div class="kpi"><div class="k"><b>${f1(x.egfr,0)}</b><span>eGFR CKD-EPI 2021 (ml/mnt/1,73 m²)</span></div><div class="k"><b>${f1(x.cg,0)}</b><span>CrCl Cockcroft-Gault (ml/mnt)<br>BB ${x.m=='akt'?'aktual':x.m=='ibw'?'ideal':'adjusted'} ${f1(x.w,1)} kg</span></div><div class="k"><b>${stage}</b><span>Kategori KDIGO</span></div></div>
+ ${msg?`<div class="warn">${msg}</div>`:''}
+ <p>Kategori GFR: ${x.g} ${{G1:'(≥90)',G2:'(60–89)',G3a:'(45–59)',G3b:'(30–44)',G4:'(15–29)',G5:'(&lt;15)'}[x.g]}. Protein: <b>${f1(x.gk,2)} g/kg</b> × BB ${pn} ${f1(x.wp,1)} kg = <b>${f1(x.gk*x.wp,0)} g/hari</b>.</p><div class="warn">${ctx}</div>${x.g=='G5'&&!x.dz?'<div class="warn">eGFR &lt;15 tanpa dialisis — pertimbangkan rujukan nefrologi.</div>':''}`,
+  li(['BB protein otomatis: aktual bila IMT &lt;25, adjusted bila ≥25. Pada edema/asites gunakan BB kering (pilih manual); pertimbangkan ideal/adjusted pada obesitas.','CrCl Cockcroft-Gault untuk dosis obat; klasifikasi CKD memakai eGFR.','Natrium &lt;2 g/hari. Kalium &amp; fosfat sesuai laboratorium (tidak dihitung).','Energi umumnya 25–35 kkal/kgBB/hari menurut kondisi klinis.']))}
+ return ''}
+function plan(i,ci=+$('kh'+i).value,hi=+$('hw'+i).value,bi=+$('nb'+i).value){const{m,sn}=R,x=MEALS[i],f=x[1]/.85,K=Math.max(m.k/4-sn.k,0)*f,P=Math.max(m.p/4-sn.p,0)*f,L=Math.max(m.l/9-sn.l,0)*f,sh=+$('pp'+i).value/100,c=KH[ci],h=HW[hi],b=NB[bi];
+ let gK=K/(c[4]/100),gH=0,gN=0;
+ for(let t=0;t<15;t++){const need=Math.max(P-gK*c[3]/100,0);gH=need*sh/(h[3]/100);gN=need*(1-sh)/(b[3]/100);const kl=gH*h[4]/100+gN*b[4]/100;gK=Math.max(K-kl,0)/(c[4]/100)}
+ const at=(it,g)=>({g,kcal:g*it[2]/100,p:g*it[3]/100,k:g*it[4]/100,l:g*it[5]/100});
+ const a=[at(c,gK),at(h,gH),at(b,gN)],fat=a.reduce((s,z)=>s+z.l,0),oil=Math.max(L-fat,0);
+ const tot={kcal:a.reduce((s,z)=>s+z.kcal,0)+oil*9,p:a.reduce((s,z)=>s+z.p,0),k:a.reduce((s,z)=>s+z.k,0),l:fat+oil};
+ return{it:[c,h,b],a,oil,tot,tg:{K,P,L,kcal:4*K+4*P+9*L},over:fat>L*1.001}}
+const line=(it,z)=>`${pic(it)}<div class="f"><b>${it[0]} <span class="st">(${it[9]})</span></b><small>${f1(z.g,0)} g · ${f1(z.kcal,0)} kkal · P ${f1(z.p,1)} · KH ${f1(z.k,1)} · L ${f1(z.l,1)} g</small></div><div class="amt">${f1(z.g/it[7],1)}<br><small class="note">${it[6]}</small></div>`;
+const maxG=(it,t)=>t==0?(it[9]=='kering'?100:it[9]=='roti'?120:250):it[6]=='gelas (200 ml)'?400:150;
+const chkW=q=>{const W=[];q.a.forEach((z,j)=>{const mg=maxG(q.it[j],j);if(z.g>mg)W.push(`${q.it[j][0]} ${f1(z.g,0)} g melebihi batas porsi wajar per waktu makan (${mg} g)`)});
+ if(q.a[0].g>maxG(q.it[0],0))W.push('Setara KH: '+KH.filter(a=>a!==q.it[0]).sort((a,b)=>b[4]-a[4]).slice(0,3).map(a=>`${a[0]} ${f1(q.a[0].k/(a[4]/100),0)} g`).join(', '));
+ if(q.over)W.push('Lemak dari makanan sudah melebihi target; minyak tambahan 0 — pilih lauk lebih rendah lemak');
+ if(q.tot.p>q.tg.P*1.1+.01)W.push('Protein dari sumber KH sudah melampaui target');return W};
+const feas=q=>q.a.every((z,j)=>z.g<=maxG(q.it[j],j))&&!q.over&&q.tot.p<=q.tg.P*1.1+.01;
+function suggest(i){const cur=[+$('kh'+i).value,+$('hw'+i).value,+$('nb'+i).value];let best=null;
+ for(let a=0;a<KH.length;a++)for(let b=0;b<HW.length;b++)for(let c=0;c<NB.length;c++){const q=plan(i,a,b,c);if(!feas(q))continue;const ch=(a!=cur[0])+(b!=cur[1])+(c!=cur[2]),r=Math.max(...q.a.map((z,j)=>z.g/maxG(q.it[j],j)));if(!best||ch<best.ch||(ch==best.ch&&r<best.r))best={a,b,c,ch,r}}return best}
+const sugHtml=i=>{const s=suggest(i);return s?`<br>💡 Alternatif yang memenuhi target: <b>${KH[s.a][0]} + ${HW[s.b][0]} + ${NB[s.c][0]}</b> <button class="btn" style="padding:4px 10px;font-size:12px" onclick="applySug(${i},${s.a},${s.b},${s.c})">Terapkan</button>`:'<br>❌ <b>Tidak ada kombinasi bahan di database yang memenuhi target ini secara realistis</b> — turunkan target, ubah proporsi protein, pecah ke camilan, atau sesuaikan secara klinis.'};
+function applySug(i,a,b,c){$('kh'+i).value=a;$('hw'+i).value=b;$('nb'+i).value=c;conv()}
+function conv(){if(!R.m)return;const{kcal,m}=R;PL={};const sn={k:0,p:0,l:0},SL={};
+ [1,3].forEach(i=>{const cur=document.querySelector(`input[name=sn${i}]:checked`),cv=cur?+cur.value:(i==1?0:4),o=SN[cv],kc=kcal*MEALS[i][1],g=kc/o[2]*100;SL[i]={o,cv,g,kc,k:g*o[7]/100,p:g*o[6]/100,l:g*o[8]/100};sn.k+=SL[i].k;sn.p+=SL[i].p;sn.l+=SL[i].l});
+ const vi=VG[+$('svt').value||0],fi=FR[+$('bht').value||0],sy=n('sy')||0,bh=n('bh')||0,ex={k:(sy*vi[4]+bh*fi[4])/100,p:(sy*vi[3]+bh*fi[3])/100,l:(sy*vi[5]+bh*fi[5])/100,kcal:(sy*vi[2]+bh*fi[2])/100};
+ R.sn={k:sn.k+ex.k,p:sn.p+ex.p,l:sn.l+ex.l};R.SL=SL;R.ex=ex;let oilD=0,dmk=[],bad=0,rows='',sK=sn.k,sP=sn.p,sL=sn.l,sC=SL[1].kc+SL[3].kc;
+ MEALS.forEach((x,i)=>{
+  if(i==1||i==3){const s=SL[i];$('mk'+i).textContent='';$('sk'+i).innerHTML=f1(s.kc,0)+'<br><small class="note">kkal</small>';
+   $('so'+i).innerHTML=SN.map((o,j)=>{const g=s.kc/o[2]*100;return `<label class="row" style="cursor:pointer;margin:6px 0;font-size:inherit;color:inherit;border:1.5px solid ${j==s.cv?'var(--g2)':'var(--l)'};border-radius:12px;padding:6px">${imgTag(o[5])}<div class="f"><b>${o[0]}</b><small>1 ${o[3]} = ${o[4]} g · ${f1(o[2]*o[4]/100,0)} kkal</small><small>${f1(g,0)} g → P ${f1(g*o[6]/100,1)} · KH ${f1(g*o[7]/100,1)} · L ${f1(g*o[8]/100,1)} g</small></div><div class="amt" style="font-size:15px">${f1(g/o[4],1)}<br><small class="note">×porsi</small></div><input type="radio" name="sn${i}" value="${j}" ${j==s.cv?'checked':''} onchange="conv()" style="width:auto"></label>`}).join('');
+   rows+=`<tr><td>${x[0]}</td><td>${x[1]*100}%</td><td>${f1(s.kc,0)}</td><td>${f1(s.k,1)}</td><td>${f1(s.p,1)}</td><td>${f1(s.l,1)}</td></tr>`;dmk.push(`${x[0]}: <b>${f1(s.k,0)} g</b>`);return}
+  const p=+$('pp'+i).value;$('pv'+i).textContent=p;
+  const q=plan(i);PL[i]=q;oilD+=q.oil;const fx=x[1]/.85,A={kcal:q.tot.kcal+ex.kcal*fx,p:q.tot.p+ex.p*fx,k:q.tot.k+ex.k*fx,l:q.tot.l+ex.l*fx},T={K:q.tg.K+ex.k*fx,P:q.tg.P+ex.p*fx,L:q.tg.L+ex.l*fx};sK+=A.k;sP+=A.p;sL+=A.l;sC+=A.kcal;dmk.push(`${x[0]}: <b>${f1(A.k,0)} g</b>`);
+  $('mk'+i).textContent=f1(A.kcal,0)+' kkal';
+  $('rk'+i).innerHTML=line(q.it[0],q.a[0]);$('rh'+i).innerHTML=line(q.it[1],q.a[1]);$('rn'+i).innerHTML=line(q.it[2],q.a[2]);
+  $('rl'+i).innerHTML=`${imgTag('minyak')}<div class="f"><b>Minyak tambahan</b><small>${f1(q.oil*9,0)} kkal · ${f1(q.oil,1)} g (sisa lemak setelah lemak dari makanan)</small></div><div class="amt">${f1(q.oil/5,1)}<br><small class="note">sdt minyak</small></div>`;
+  const dv=(a,b)=>Math.abs(a-b)/Math.max(b,1)>.1,W=chkW(q);if(W.length)bad++;
+  $('ck'+i).className='chk'+(W.length||dv(A.k,T.K)||dv(A.p,T.P)?' w':'');
+  $('ck'+i).innerHTML=`Tercapai / target (setelah camilan, sayur &amp; buah): KH <b>${f1(A.k,0)}/${f1(T.K,0)} g</b> · Protein <b>${f1(A.p,0)}/${f1(T.P,0)} g</b> · Lemak <b>${f1(A.l,0)}/${f1(T.L,0)} g</b> · <b>${f1(A.kcal,0)}</b> kkal`+W.map(w=>'<br>⚠️ '+w).join('')+(W.length?sugHtml(i):'');
+  rows+=`<tr><td>${x[0]}</td><td>${x[1]*100}%</td><td>${f1(A.kcal,0)}</td><td>${f1(A.k,1)}</td><td>${f1(A.p,1)}</td><td>${f1(A.l,1)}</td></tr>`});
+ const dmE=document.getElementById('dmkh');if(dmE)dmE.innerHTML=dmk.join(' · ')+` · sayur+buah ±${f1(ex.k,0)} g KH/hari (sudah termasuk)`;R.bad=bad;$('feas').innerHTML=bad?`<div class="warn">⚠️ ${bad} dari 3 waktu makan utama <b>tidak memenuhi target secara realistis</b> — jangan berikan rencana ini tanpa penyesuaian. Lihat saran per waktu makan.</div>`:'';
+ $('por').innerHTML=`<table><tr><th>Waktu (tercapai)</th><th>Porsi</th><th>kkal</th><th>KH (g)</th><th>Protein (g)</th><th>Lemak (g)</th></tr>${rows}<tr><th>Total tercapai</th><th></th><th>${f1(sC,0)}</th><th>${f1(sK,1)}</th><th>${f1(sP,1)}</th><th>${f1(sL,1)}</th></tr><tr><th>Target harian</th><th>100%</th><th>${f1(kcal,0)}</th><th>${f1(m.k/4,1)}</th><th>${f1(m.p/4,1)}</th><th>${f1(m.l/9,1)}</th></tr></table><p class="note">Seluruh lima waktu makan (termasuk makro camilan) dihitung ke total harian; target 3 makan utama = target harian dikurangi camilan.</p>`;
+ R.oilD=oilD;
+ const tt=sy+bh;
+ $('sb').innerHTML=`<div class="k"><div style="font-size:38px">🥦</div><b>${f1(sy,0)} g</b><span>Sayur/hari ≈ ${f1(sy/100,1)} gelas setelah ditiriskan (±${f1(sy/3,0)} g/waktu makan utama)</span></div><div class="k"><div style="font-size:38px">🍌</div><b>${f1(bh,0)} g</b><span>Buah/hari ≈ ${f1(bh/50,1)} pisang ambon (50 g) atau ${f1(bh/150,1)} apel (150 g)</span></div><div class="k"><div style="font-size:38px">⚖️</div><b>${f1(tt,0)} g</b><span>Total sayur + buah (anjuran 400–600 g/hari)${tt<400||tt>600?' — ⚠️ di luar anjuran':''}</span></div>`;
+ $('sb').innerHTML+=`<div class="k" style="grid-column:1/-1"><span>Sayur &amp; buah menyumbang ±${f1(ex.kcal,0)} kkal · KH ${f1(ex.k,0)} g · P ${f1(ex.p,1)} g · L ${f1(ex.l,1)} g — sudah dihitung dalam total harian dan target makan utama. Perhatikan kalium pada CKD.</span></div>`;
+ const sg=kcal*.1/4;
+ $('lim').innerHTML=`<div class="k"><b>&lt; ${f1(sg,0)} g</b><span>Gula bebas (10% energi, batas WHO; target individual bisa lebih rendah) ≈ ${f1(sg/12.5,1)} sdm (1 sdm ≈ 12,5 g)</span></div><div class="k"><b>&lt; 2.000 mg</b><span>Natrium (WHO) = garam &lt;5 g ≈ 1 sdt</span></div><div class="k"><b>${f1(m.l/9,0)} g</b><span>Total lemak (semua sumber)<br>minyak tambahan hari ini ±${f1(oilD,0)} g ≈ ${f1(oilD/12,1)} sdm</span></div><div class="k"><b>SFA &lt;7%</b><span>MUFA 10% · PUFA 8%</span></div>`}
+const CD=[['n','⚖️ Gizi Seimbang'],['ob','🏋️ Obesitas'],['dm','🩸 Diabetes Melitus'],['dl','🧈 Dislipidemia'],['ht','❤️ Hipertensi'],['hu','🦶 Hiperurisemia'],['an','🩹 Anemia'],['ck','🫘 CKD']];
+$('chips').innerHTML=CD.map(c=>`<button data-c="${c[0]}" class="${c[0]=='n'?'on':''}">${c[1]}</button>`).join('');
+const CS=new Set();
+$('chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;const k=b.dataset.c;if(k=='n')CS.clear();else CS.has(k)?CS.delete(k):CS.add(k);document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x.dataset.c=='n'?CS.size==0:CS.has(x.dataset.c)));calc()};
+document.querySelectorAll('main input:not([type=range]):not([type=radio]):not(#nm),main select:not(.ms)').forEach(e=>e.addEventListener('input',()=>{if(e.id=='sy'||e.id=='bh')conv();else calc()}));
+function setSex(s){sex=s;$('sP').classList.toggle('on',s=='P');$('sW').classList.toggle('on',s=='W');$('fk').value='';calc()}
+$('sP').onclick=()=>setSex('P');$('sW').onclick=()=>setSex('W');
+['age','bb'].forEach(i=>$(i).addEventListener('input',()=>{$('fk').value=''}));
+function ln(it,z){return `${it[0]} ±${f1(z.g,0)} g (${f1(z.g/it[7],1)} ${it[6]})`}
+function rekap(){const{kcal,m}=R;if(!kcal)return;const nm=$('nm').value.trim(),cn=CD.filter(x=>S.cs.includes(x[0])).map(x=>x[1].replace(/^\S+\s/,'')).join(' + ');
+ let t=`*🥗 RENCANA DIET${nm?' – '+nm:''}*\n${sex=='P'?'Pria':'Wanita'}, ${S.age} th · BB ${f1(S.bb,1)} kg · TB ${S.tb} cm\nIMT ${f1(S.imt)} (${S.st})\n${!S.cs.length?'':'Program: *'+cn+'*\n'}\n*🎯 Kebutuhan per hari*\nKalori: *${f1(kcal,0)} kkal*\nKarbohidrat ${f1(S.pK*100,0)}%: ${f1(m.k/4,0)} g\nProtein ${f1(S.pP*100,0)}%: ${f1(m.p/4,0)} g\nLemak ${f1(S.pL*100,0)}%: ${f1(m.l/9,0)} g\n\n*🍽️ Menu & takaran*\n`;
+ MEALS.forEach((x,i)=>{t+=`\n*${x[0]} (${f1(kcal*x[1],0)} kkal)*\n`;
+  if(i==1||i==3){const s=R.SL[i];t+=`• ${s.o[0]}: ±${f1(s.g,0)} g (${f1(s.g/s.o[4],1)} × ${s.o[3]}, ${s.o[4]} g)\n`;return}
+  const q=PL[i],p=+$('pp'+i).value;t+=`• Karbohidrat: ${ln(q.it[0],q.a[0])}\n`;
+  if(p>0)t+=`• Lauk hewani: ${ln(q.it[1],q.a[1])}\n`;if(p<100)t+=`• Lauk nabati: ${ln(q.it[2],q.a[2])}\n`;t+=`• Minyak tambahan: ±${f1(q.oil/5,1)} sdt\n`});
+ const sy=n('sy')||0,bh=n('bh')||0;
+ t+=`\n*🥦 Sayur & buah*\n• Sayur (${VG[+$('svt').value||0][0]}) ${f1(sy,0)} g/hari\n• Buah (${FR[+$('bht').value||0][0]}) ${f1(bh,0)} g/hari\n\n*⚠️ Batas harian*\n• Gula <${f1(kcal*.1/4,0)} g\n• Natrium <2000 mg (garam <5 g ≈ 1 sdt)\n• Total lemak ${f1(m.l/9,0)} g (minyak tambahan ±${f1(R.oilD||0,0)} g)\n`;
+ if(S.ck)t+=`\n*💡 Catatan*\nProtein ${f1(S.ck.gk,2)} g/kgBB/hari; eGFR ±${f1(S.ck.egfr,0)} ml/mnt (CKD-EPI 2021).\n`;
+ t+=`\nTetap minum air putih cukup & kontrol sesuai jadwal. Semoga sehat selalu 🙏`;
+ $('wat').value=(R.bad?'⚠️ DRAFT — ada waktu makan yang belum realistis; perlu penyesuaian sebelum diberikan\n\n':'')+t;$('wa').style.display='block';$('wa').scrollIntoView({behavior:'smooth'})}
+function sendWA(){window.open('https://wa.me/?text='+encodeURIComponent($('wat').value),'_blank')}
+function copyWA(){const b=$('cpb');const ok=()=>{b.textContent='✅ Tersalin';setTimeout(()=>b.textContent='📋 Salin teks',1800)};if(navigator.clipboard)navigator.clipboard.writeText($('wat').value).then(ok,()=>{$('wat').select();document.execCommand('copy');ok()});else{$('wat').select();document.execCommand('copy');ok()}}
+(function(){const r=(g,a,b,c,d,e,f,h)=>`<tr><td>${a}</td><td>${g}</td><td>${f1(b,0)}</td><td>${f1(c,1)}</td><td>${f1(d,1)}</td><td>${f1(e,1)}</td></tr>`;let h='';
+ [['Karbohidrat',KH],['Hewani',HW],['Nabati',NB],['Sayur',VG],['Buah',FR]].forEach(([g,a])=>a.forEach(x=>h+=`<tr><td>${x[0]} (${g})</td><td>${x[9]}</td><td>${f1(x[2],0)}</td><td>${f1(x[3],1)}</td><td>${f1(x[4],1)}</td><td>${f1(x[5],1)}</td></tr>`));
+ SN.forEach(o=>h+=`<tr><td>${o[0]} (Camilan)</td><td>siap makan</td><td>${f1(o[2],0)}</td><td>${f1(o[6],1)}</td><td>${f1(o[7],1)}</td><td>${f1(o[8],1)}</td></tr>`);
+ $('dbt').innerHTML=`<p class="note"><b>Sumber:</b> ${DB_SRC}. <b>Tanggal verifikasi:</b> ${DB_VER||'belum ada'}. Nilai per 100 g sesuai status; energi dihitung 4/4/9 dari makronutrien. Bagian yang dapat dimakan (BDD) belum dibakukan per item — cocokkan dengan TKPI 2017 dan isi <code>DB_VER</code> setelah diverifikasi.</p><table><tr><th>Bahan</th><th>Status</th><th>kkal</th><th>P (g)</th><th>KH (g)</th><th>L (g)</th></tr>${h}</table>`})();
+calc();
 </script>
 </body></html>
